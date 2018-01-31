@@ -130,7 +130,7 @@ to a statsd server.
 
 =head1 ATTRIBUTES
 
-head2 client
+=head2 client
 
 This is a statsd client, such as an L<Net::Statsd::Client> object.
 
