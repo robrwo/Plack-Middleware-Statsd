@@ -99,8 +99,6 @@ sub call {
   use Plack::Builder;
   use Net::Statsd::Client;
 
-  my $app = sub { ... };
-
   builder {
 
     enable "Statsd",
@@ -108,6 +106,20 @@ sub call {
       sample_rate => 1.0;
 
     ...
+
+    sub {
+      my ($env) = @_;
+
+      # Send statistics via other middleware
+
+      if (my $stats = $env->{'psgix.monitor.statsd'}) {
+
+        $stats->increment('myapp.wibble');
+
+      }
+
+
+    };
 
   };
 
