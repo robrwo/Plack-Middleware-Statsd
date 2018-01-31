@@ -4,7 +4,7 @@ Plack::Middleware::Statsd - send statistics to statsd
 
 # VERSION
 
-version v0.1.0
+version v0.1.1
 
 # SYNOPSIS
 
@@ -65,7 +65,7 @@ The only restriction on the client is that it has the same API as
 
 Other statsd client modules may be used via a wrapper class.
 
-## `sample_rate`
+## sample\_rate
 
 The default sampling rate to used. This will override the default rate
 of the ["client"](#client).
@@ -76,40 +76,48 @@ It defaults to `1`.
 
 The following metrics are logged:
 
-- psgi.request.method.$METHOD
+- `psgi.request.method.$METHOD`
 
     This increments a counter for the request method.
 
-- psgi.request.remote\_addr
+- `psgi.request.remote_addr`
 
     The remote address is added to the set.
 
-- psgi.request.content-length
+- `psgi.request.content-length`
 
     The content-length of the request, if it is specified in the header.
 
     This is treated as a timing rather than a counter, so that statistics
     can be saved.
 
-- psgi.response.content-length
+- `psgi.response.content-length`
 
     The content-length of the response, if it is specified in the header.
 
     This is treated as a timing rather than a counter, so that statistics
     can be saved.
 
-- psgi.response.content-type.$TYPE.$SUBTYPE
+- `psgi.response.content-type.$TYPE.$SUBTYPE`
 
     A counter for the content type is incremented, e.g. for a JPEG image,
     the counter `psgi.response.content-type.image.jpeg` is incremented.
 
-- psgi.response.status.$CODE
+- `psgi.response.status.$CODE`
 
     A counter for the HTTP status code is incremented.
 
 - psgi.response.time
 
     The response time, in ms (rounded up using `ceil`).
+
+- `psgi.response.x-sendfile`
+
+    This counter is incremented when the `X-Sendfile` header is added.
+
+- `psgix.harakiri`
+
+    This counter is incremented when the harakiri flag is set.
 
 If you want to rename these, then you will need to use a wrapper
 class.
