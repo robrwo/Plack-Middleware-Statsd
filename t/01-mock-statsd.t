@@ -16,7 +16,10 @@ my $handler = builder {
     enable "ContentLength";
     enable "Head";
     sub {
-        return [ 200, [ 'Content-Type' => 'text/plain' ], ['Ok'] ];
+        my $env    = shift;
+        my $client = $env->{'psgix.monitor.statsd'};
+        return [ $client ? 200 : 202,
+            [ 'Content-Type' => 'text/plain' ], ['Ok'] ];
     };
 };
 
