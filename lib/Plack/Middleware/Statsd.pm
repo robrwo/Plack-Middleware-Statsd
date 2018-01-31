@@ -1,5 +1,7 @@
 package Plack::Middleware::Statsd;
 
+# ABSTRACT: send statistics to statsd
+
 use v5.10;
 
 use strict;
@@ -92,7 +94,69 @@ sub call {
 
 }
 
+=head1 SYNOPSIS
+
+  use Plack::Builder;
+  use Net::Statsd::Client;
+
+  my $app = sub { ... };
+
+  builder {
+
+    enable "Statsd",
+      client      => Net::Statsd::Client->new( ... ),
+      sample_rate => 1.0;
+
+    ...
+
+  };
+
+=head1 DESCRIPTION
+
+This middleware gathers metrics from the application send sends them
+to a statsd server.
+
+=head1 ATTRIBUTES
+
+head2 client
+
+This is a statsd client, such as an L<Net::Statsd::Client> object.
+
+If one is omitted, then it will default to one defined in the
+environment hash at C<psgix.monitor.statsd>.
+
+C<psgix.monitor.statsd> will be set to the current client if it is not
+set.
+
+The only restriction on the client is that it has the same API as
+L<Net::Statsd::Client> by supporting the following methods:
+
+=over
+
+=item update
+
+=item increment
+
+=item decrement
+
+=item timing_ms
+
+=item set_add
+
+=back
+
+Other statsd client modules may be used via a wrapper class.
+
+=head2 C<sample_rate>
+
+The default sampling rate to used. This will override the default rate
+of the L</client>.
+
+It defaults to C<1>.
+
 =head1 SEE ALSO
+
+L<Net::Statsd::Client>
 
 L<PSGI>
 
