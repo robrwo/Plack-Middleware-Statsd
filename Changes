@@ -4,5 +4,7 @@ Revision history for Plack-Middleware-Statsd
   [Documentation]
   - Fixed POD markup.
 
+  - Documented additional metrics.
+
 v0.1.0    2018-01-31 18:13:40+00:00 Europe/London
   - Initial release.

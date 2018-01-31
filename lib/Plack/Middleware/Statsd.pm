@@ -217,6 +217,14 @@ A counter for the HTTP status code is incremented.
 
 The response time, in ms (rounded up using C<ceil>).
 
+=item psgi.response.x-sendfile
+
+This counter is incremented when the C<X-Sendfile> header is added.
+
+=item psgix.harakiri
+
+This counter is incremented when the harakiri flag is set.
+
 =back
 
 If you want to rename these, then you will need to use a wrapper
