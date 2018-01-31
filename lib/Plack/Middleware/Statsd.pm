@@ -169,7 +169,7 @@ set_add
 
 Other statsd client modules may be used via a wrapper class.
 
-=head2 C<sample_rate>
+=head2 sample_rate
 
 The default sampling rate to used. This will override the default rate
 of the L</client>.
