@@ -182,34 +182,34 @@ The following metrics are logged:
 
 =over
 
-=item psgi.request.method.$METHOD
+=item C<psgi.request.method.$METHOD>
 
 This increments a counter for the request method.
 
-=item psgi.request.remote_addr
+=item C<psgi.request.remote_addr>
 
 The remote address is added to the set.
 
-=item psgi.request.content-length
+=item C<psgi.request.content-length>
 
 The content-length of the request, if it is specified in the header.
 
 This is treated as a timing rather than a counter, so that statistics
 can be saved.
 
-=item psgi.response.content-length
+=item C<psgi.response.content-length>
 
 The content-length of the response, if it is specified in the header.
 
 This is treated as a timing rather than a counter, so that statistics
 can be saved.
 
-=item psgi.response.content-type.$TYPE.$SUBTYPE
+=item C<psgi.response.content-type.$TYPE.$SUBTYPE>
 
 A counter for the content type is incremented, e.g. for a JPEG image,
 the counter C<psgi.response.content-type.image.jpeg> is incremented.
 
-=item psgi.response.status.$CODE
+=item C<psgi.response.status.$CODE>
 
 A counter for the HTTP status code is incremented.
 
@@ -217,11 +217,11 @@ A counter for the HTTP status code is incremented.
 
 The response time, in ms (rounded up using C<ceil>).
 
-=item psgi.response.x-sendfile
+=item C<psgi.response.x-sendfile>
 
 This counter is incremented when the C<X-Sendfile> header is added.
 
-=item psgix.harakiri
+=item C<psgix.harakiri>
 
 This counter is incremented when the harakiri flag is set.
 
