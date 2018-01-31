@@ -15,6 +15,7 @@ my $handler = builder {
     enable "Statsd", client => $stats;
     enable "ContentLength";
     enable "Head";
+
     sub {
         my $env    = shift;
         my $client = $env->{'psgix.monitor.statsd'};
@@ -41,7 +42,7 @@ test_psgi
           bag(
             [ 'timing_ms', 'psgi.response.time',           ignore(),    1 ],
             [ 'timing_ms', 'psgi.request.content-length',  0,           1 ],
-            [ 'increment', 'psgi.request.method.HEAD',              1 ],
+            [ 'increment', 'psgi.request.method.HEAD',     1 ],
             [ 'set_add',   'psgi.request.remote_addr',     '127.0.0.1', 1 ],
             [ 'timing_ms', 'psgi.response.content-length', 0,           1 ],
             [ 'increment', 'psgi.response.content-type.text.plain', 1 ],
@@ -64,7 +65,7 @@ test_psgi
           bag(
             [ 'timing_ms', 'psgi.response.time',           ignore(),    1 ],
             [ 'timing_ms', 'psgi.request.content-length',  0,           1 ],
-            [ 'increment', 'psgi.request.method.GET',              1 ],
+            [ 'increment', 'psgi.request.method.GET',      1 ],
             [ 'set_add',   'psgi.request.remote_addr',     '127.0.0.1', 1 ],
             [ 'timing_ms', 'psgi.response.content-length', 2,           1 ],
             [ 'increment', 'psgi.response.content-type.text.plain', 1 ],
