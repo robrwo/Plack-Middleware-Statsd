@@ -145,15 +145,25 @@ L<Net::Statsd::Client> by supporting the following methods:
 
 =over
 
-=item update
+=item
 
-=item increment
+update
 
-=item decrement
+=item
 
-=item timing_ms
+increment
 
-=item set_add
+=item
+
+decrement
+
+=item
+
+timing_ms
+
+=item
+
+set_add
 
 =back
 
@@ -166,11 +176,63 @@ of the L</client>.
 
 It defaults to C<1>.
 
+=head1 METRICS
+
+The following metrics are logged:
+
+=over
+
+=item psgi.request.method.$METHOD
+
+This increments a counter for the request method.
+
+=item psgi.request.remote_addr
+
+The remote address is added to the set.
+
+=item psgi.request.content-length
+
+The content-length of the request, if it is specified in the header.
+
+This is treated as a timing rather than a counter, so that statistics
+can be saved.
+
+=item psgi.response.content-length
+
+The content-length of the response, if it is specified in the header.
+
+This is treated as a timing rather than a counter, so that statistics
+can be saved.
+
+=item psgi.response.content-type.$TYPE.$SUBTYPE
+
+A counter for the content type is incremented, e.g. for a JPEG image,
+the counter C<psgi.response.content-type.image.jpeg> is incremented.
+
+=item psgi.response.status.$CODE
+
+A counter for the HTTP status code is incremented.
+
+=item psgi.response.time
+
+The response time, in ms (rounded up using C<ceil>).
+
+=back
+
+If you want to rename these, then you will need to use a wrapper
+class.
+
 =head1 SEE ALSO
 
 L<Net::Statsd::Client>
 
 L<PSGI>
+
+=head1 append:AUTHOR
+
+The initial development of this module was sponsored by Science Photo
+Library L<https://www.sciencephoto.com>.
+
 
 =cut
 
