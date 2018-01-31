@@ -12,6 +12,8 @@ use Plack::Util::Accessor qw/ client sample_rate /;
 use POSIX ();
 use Time::HiRes;
 
+our $VERSION = 'v0.1.0';
+
 sub call {
     my ( $self, $env ) = @_;
 
