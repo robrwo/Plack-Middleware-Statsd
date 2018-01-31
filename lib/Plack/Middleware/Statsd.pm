@@ -17,7 +17,8 @@ our $VERSION = 'v0.1.0';
 sub call {
     my ( $self, $env ) = @_;
 
-    my $client = $env->{'psgix.monitor.statsd'} //= $self->client;
+    my $client = $self->client // $env->{'psgix.monitor.statsd'};
+    $env->{'psgix.monitor.statsd'} //= $client;
 
     my $start = [Time::HiRes::gettimeofday];
     my $res   = $self->app->($env);
