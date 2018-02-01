@@ -199,6 +199,13 @@ The content-length of the request, if it is specified in the header.
 This is treated as a timing rather than a counter, so that statistics
 can be saved.
 
+=item C<psgi.request.content-type.$TYPE.$SUBTYPE>
+
+A counter for the content type of request bodies is incremented, e.g.
+C<psgi.request.content-type.application.x-www-form-urlencoded>.
+
+Any modifiers in the type, e.g. C<charset>, will be ignored.
+
 =item C<psgi.response.content-length>
 
 The content-length of the response, if it is specified in the header.
@@ -210,6 +217,8 @@ can be saved.
 
 A counter for the content type is incremented, e.g. for a JPEG image,
 the counter C<psgi.response.content-type.image.jpeg> is incremented.
+
+Any modifiers in the type, e.g. C<charset>, will be ignored.
 
 =item C<psgi.response.status.$CODE>
 
