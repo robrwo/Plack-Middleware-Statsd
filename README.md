@@ -4,7 +4,7 @@ Plack::Middleware::Statsd - send statistics to statsd
 
 # VERSION
 
-version v0.1.1
+version v0.1.2
 
 # SYNOPSIS
 
@@ -91,6 +91,13 @@ The following metrics are logged:
     This is treated as a timing rather than a counter, so that statistics
     can be saved.
 
+- `psgi.request.content-type.$TYPE.$SUBTYPE`
+
+    A counter for the content type of request bodies is incremented, e.g.
+    `psgi.request.content-type.application.x-www-form-urlencoded`.
+
+    Any modifiers in the type, e.g. `charset`, will be ignored.
+
 - `psgi.response.content-length`
 
     The content-length of the response, if it is specified in the header.
@@ -103,11 +110,13 @@ The following metrics are logged:
     A counter for the content type is incremented, e.g. for a JPEG image,
     the counter `psgi.response.content-type.image.jpeg` is incremented.
 
+    Any modifiers in the type, e.g. `charset`, will be ignored.
+
 - `psgi.response.status.$CODE`
 
     A counter for the HTTP status code is incremented.
 
-- psgi.response.time
+- `psgi.response.time`
 
     The response time, in ms (rounded up using `ceil`).
 
