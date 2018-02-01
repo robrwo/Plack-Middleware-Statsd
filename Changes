@@ -4,10 +4,15 @@ Revision history for Plack-Middleware-Statsd
   [Bug Fixes]
   - Removed charset from content-type metrics.
 
+  - Explicitly added Plack middleware prerequisites for tests.
+
   [Documentation]
   - Fixed POD markup.
 
   - Documented additional metrics.
+
+  [Other Changes]
+  - Removed unnecessary testing prerequisites.
 
 v0.1.0    2018-01-31 18:13:40+00:00 Europe/London
   - Initial release.
