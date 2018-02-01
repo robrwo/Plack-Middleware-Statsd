@@ -1,6 +1,9 @@
 Revision history for Plack-Middleware-Statsd
 
 {{$NEXT}}
+  [Bug Fixes]
+  - Removed charset from content-type metrics.
+
   [Documentation]
   - Fixed POD markup.
 

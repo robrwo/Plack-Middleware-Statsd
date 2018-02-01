@@ -50,6 +50,7 @@ sub call {
 
             if ( my $type = $env->{CONTENT_TYPE} ) {
                 $type =~ s#/#.#g;
+                $type =~ s/;.*$//;
                 $client->increment( 'psgi.request.content-type.' . $type,
                     $rate );
 
@@ -73,6 +74,7 @@ sub call {
 
             if ( my $type = $h->get('Content-Type') ) {
                 $type =~ s#/#.#g;
+                $type =~ s/;.*$//;
                 $client->increment( 'psgi.response.content-type.' . $type,
                     $rate );
             }

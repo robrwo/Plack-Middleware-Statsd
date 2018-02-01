@@ -20,7 +20,7 @@ my $handler = builder {
         my $env    = shift;
         my $client = $env->{'psgix.monitor.statsd'};
         return [ $client ? 200 : 202,
-            [ 'Content-Type' => 'text/plain' ], ['Ok'] ];
+            [ 'Content-Type' => 'text/plain; charset=utf8' ], ['Ok'] ];
     };
 };
 
