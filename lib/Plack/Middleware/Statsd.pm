@@ -62,7 +62,12 @@ sub call {
 
             my $h = Plack::Util::headers( $res->[1] );
 
-            if ( $h->exists('X-Sendfile') ) {    # TODO: configurable
+            my $xsendfile =
+                 $env->{'plack.xsendfile.type'}
+              || $ENV{HTTP_X_SENDFILE_TYPE}
+              || 'X-Sendfile';
+
+            if ( $h->exists($xsendfile) ) {
                 $client->increment( 'psgi.response.x-sendfile', $rate );
             }
 
@@ -231,6 +236,11 @@ The response time, in ms (rounded up using C<ceil>).
 =item C<psgi.response.x-sendfile>
 
 This counter is incremented when the C<X-Sendfile> header is added.
+
+The header is configured using the C<plack.xsendfile.type> environment
+key, ortherwise the C<HTTP_X_SENDFILE_TYPE> environment variable.
+
+See L<Plack::Middleware::XSendfile> for more information.
 
 =item C<psgix.harakiri>
 

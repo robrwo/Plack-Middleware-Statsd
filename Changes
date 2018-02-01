@@ -1,6 +1,9 @@
 Revision history for Plack-Middleware-Statsd
 
 {{$NEXT}}
+  [Enhancements]
+  - Allow the X-Sendfile header variation to be configured.
+
   [Documentation]
   - Updated information on logging content types.
 
