@@ -224,7 +224,7 @@ Any modifiers in the type, e.g. C<charset>, will be ignored.
 
 A counter for the HTTP status code is incremented.
 
-=item psgi.response.time
+=item C<psgi.response.time>
 
 The response time, in ms (rounded up using C<ceil>).
 
