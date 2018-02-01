@@ -129,7 +129,7 @@ The following metrics are logged:
     This counter is incremented when the harakiri flag is set.
 
 If you want to rename these, then you will need to use a wrapper
-class.
+class for the ["client"](#client).
 
 # SEE ALSO
 

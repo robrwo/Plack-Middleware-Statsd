@@ -239,7 +239,7 @@ This counter is incremented when the harakiri flag is set.
 =back
 
 If you want to rename these, then you will need to use a wrapper
-class.
+class for the L</client>.
 
 =head1 SEE ALSO
 
