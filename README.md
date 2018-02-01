@@ -4,7 +4,7 @@ Plack::Middleware::Statsd - send statistics to statsd
 
 # VERSION
 
-version v0.2.0
+version v0.2.1
 
 # SYNOPSIS
 
@@ -135,6 +135,26 @@ The following metrics are logged:
 
 If you want to rename these, then you will need to use a wrapper
 class for the ["client"](#client).
+
+# EXAMPLES
+
+## Using from Catalyst
+
+You can access the configured statsd client from [Catalyst](https://metacpan.org/pod/Catalyst):
+
+```perl
+sub finalize {
+  my $c = shift;
+
+  if (my $statsd = $c->req->env->{'psgix.monitor.statsd'}) {
+    ...
+
+
+  }
+
+  $c->next::method(@_);
+}
+```
 
 # SEE ALSO
 

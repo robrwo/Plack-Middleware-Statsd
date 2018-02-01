@@ -251,6 +251,24 @@ This counter is incremented when the harakiri flag is set.
 If you want to rename these, then you will need to use a wrapper
 class for the L</client>.
 
+=head1 EXAMPLES
+
+=head2 Using from Catalyst
+
+You can access the configured statsd client from L<Catalyst>:
+
+  sub finalize {
+    my $c = shift;
+
+    if (my $statsd = $c->req->env->{'psgix.monitor.statsd'}) {
+      ...
+
+
+    }
+
+    $c->next::method(@_);
+  }
+
 =head1 SEE ALSO
 
 L<Net::Statsd::Client>

@@ -1,6 +1,8 @@
 Revision history for Plack-Middleware-Statsd
 
 {{$NEXT}}
+  [Documentation]
+  - Added an example of accessing this statsd client from Catalyst.
 
 v0.2.0    2018-02-01 17:21:29+00:00 Europe/London
   [Enhancements]
