@@ -1,8 +1,14 @@
 Revision history for Plack-Middleware-Statsd
 
 {{$NEXT}}
+  [Enhancements]
+  - Allow the statsd client to support the timing method as an
+    alternative to the timing_ms method.
+
   [Documentation]
   - Added an example of accessing this statsd client from Catalyst.
+
+  - Only list the client methods that are actually used.
 
   [Tests]
   - Explicitly specify a dependency of Test::Most for cpantesters.

@@ -55,13 +55,12 @@ environment hash at `psgix.monitor.statsd`.
 set.
 
 The only restriction on the client is that it has the same API as
-[Net::Statsd::Client](https://metacpan.org/pod/Net::Statsd::Client) by supporting the following methods:
+[Net::Statsd::Client](https://metacpan.org/pod/Net::Statsd::Client) or similar modules, by supporting the following
+methods:
 
-- update
-- increment
-- decrement
-- timing\_ms
-- set\_add
+- `increment`
+- `timing_ms` or `timing`
+- `set_add`
 
 Other statsd client modules may be used via a wrapper class.
 

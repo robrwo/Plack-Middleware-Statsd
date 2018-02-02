@@ -32,15 +32,17 @@ sub call {
 
             return unless $client;
 
+            my $histogram = $client->can('timing') // $client->can('timing_ms');
+
             my $elapsed = Time::HiRes::tv_interval($start);
 
             my $rate = $self->sample_rate // 1;
 
-            $client->timing_ms( 'psgi.response.time',
+            $client->$histogram( 'psgi.response.time',
                 POSIX::ceil( $elapsed * 1000 ), $rate );
 
             if ( defined $env->{CONTENT_LENGTH} ) {
-                $client->timing_ms( 'psgi.request.content-length',
+                $client->$histogram( 'psgi.request.content-length',
                     $env->{CONTENT_LENGTH}, $rate );
             }
 
@@ -73,7 +75,7 @@ sub call {
 
             if ( $h->exists('Content-Length') ) {
                 my $length = $h->get('Content-Length') || 0;
-                $client->timing_ms( 'psgi.response.content-length',
+                $client->$histogram( 'psgi.response.content-length',
                     $length, $rate );
             }
 
@@ -148,29 +150,22 @@ C<psgix.monitor.statsd> will be set to the current client if it is not
 set.
 
 The only restriction on the client is that it has the same API as
-L<Net::Statsd::Client> by supporting the following methods:
+L<Net::Statsd::Client> or similar modules, by supporting the following
+methods:
 
 =over
 
 =item
 
-update
+C<increment>
 
 =item
 
-increment
+C<timing_ms> or C<timing>
 
 =item
 
-decrement
-
-=item
-
-timing_ms
-
-=item
-
-set_add
+C<set_add>
 
 =back
 
