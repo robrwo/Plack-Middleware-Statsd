@@ -4,6 +4,9 @@ Revision history for Plack-Middleware-Statsd
   [Documentation]
   - Added an example of accessing this statsd client from Catalyst.
 
+  [Tests]
+  - Explicitly specify a dependency of Test::Most for cpantesters.
+
 v0.2.0    2018-02-01 17:21:29+00:00 Europe/London
   [Enhancements]
   - Allow the X-Sendfile header variation to be configured.

@@ -17,6 +17,7 @@ on 'test' => sub {
   requires "Plack::Middleware::Head" => "0";
   requires "Plack::Test" => "0";
   requires "Sub::Util" => "1.40";
+  requires "Test::Differences" => "0";
   requires "Test::More" => "0";
   requires "Test::Most" => "0";
   requires "lib" => "0";
