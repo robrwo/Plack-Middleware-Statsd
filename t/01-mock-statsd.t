@@ -40,13 +40,13 @@ test_psgi
 
         cmp_deeply \@metrics,
           bag(
-            [ 'timing_ms', 'psgi.response.time',           ignore(),    1 ],
-            [ 'timing_ms', 'psgi.request.content-length',  0,           1 ],
-            [ 'increment', 'psgi.request.method.HEAD',     1 ],
-            [ 'set_add',   'psgi.request.remote_addr',     '127.0.0.1', 1 ],
-            [ 'timing_ms', 'psgi.response.content-length', 0,           1 ],
-            [ 'increment', 'psgi.response.content-type.text.plain', 1 ],
-            [ 'increment', 'psgi.response.status.200',              1 ],
+            [ 'timing_ms', 'psgi.response.time',           ignore(), ],
+            [ 'timing_ms', 'psgi.request.content-length',  0, ],
+            [ 'increment', 'psgi.request.method.HEAD', ],
+            [ 'set_add',   'psgi.request.remote_addr',     '127.0.0.1', ],
+            [ 'timing_ms', 'psgi.response.content-length', 0, ],
+            [ 'increment', 'psgi.response.content-type.text.plain', ],
+            [ 'increment', 'psgi.response.status.200', ],
           ),
           'expected metrics';
 
@@ -63,13 +63,13 @@ test_psgi
 
         cmp_deeply \@metrics,
           bag(
-            [ 'timing_ms', 'psgi.response.time',           ignore(),    1 ],
-            [ 'timing_ms', 'psgi.request.content-length',  0,           1 ],
-            [ 'increment', 'psgi.request.method.GET',      1 ],
-            [ 'set_add',   'psgi.request.remote_addr',     '127.0.0.1', 1 ],
-            [ 'timing_ms', 'psgi.response.content-length', 2,           1 ],
-            [ 'increment', 'psgi.response.content-type.text.plain', 1 ],
-            [ 'increment', 'psgi.response.status.200',              1 ],
+            [ 'timing_ms', 'psgi.response.time',           ignore(), ],
+            [ 'timing_ms', 'psgi.request.content-length',  0, ],
+            [ 'increment', 'psgi.request.method.GET', ],
+            [ 'set_add',   'psgi.request.remote_addr',     '127.0.0.1', ],
+            [ 'timing_ms', 'psgi.response.content-length', 2, ],
+            [ 'increment', 'psgi.response.content-type.text.plain', ],
+            [ 'increment', 'psgi.response.status.200', ],
           ),
           'expected metrics';
 

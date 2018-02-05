@@ -10,7 +10,7 @@ use warnings;
 use parent qw/ Plack::Middleware /;
 
 use Plack::Util;
-use Plack::Util::Accessor qw/ client sample_rate /;
+use Plack::Util::Accessor qw/ client /;
 use POSIX ();
 use Time::HiRes;
 
@@ -36,30 +36,26 @@ sub call {
 
             my $elapsed = Time::HiRes::tv_interval($start);
 
-            my $rate = $self->sample_rate // 1;
-
             $client->$histogram( 'psgi.response.time',
-                POSIX::ceil( $elapsed * 1000 ), $rate );
+                POSIX::ceil( $elapsed * 1000 ) );
 
             if ( defined $env->{CONTENT_LENGTH} ) {
                 $client->$histogram( 'psgi.request.content-length',
-                    $env->{CONTENT_LENGTH}, $rate );
+                    $env->{CONTENT_LENGTH} );
             }
 
             if ( my $method = $env->{REQUEST_METHOD} ) {
-                $client->increment( 'psgi.request.method.' . $method, $rate );
+                $client->increment( 'psgi.request.method.' . $method );
             }
 
             if ( my $type = $env->{CONTENT_TYPE} ) {
                 $type =~ s#/#.#g;
                 $type =~ s/;.*$//;
-                $client->increment( 'psgi.request.content-type.' . $type,
-                    $rate );
+                $client->increment( 'psgi.request.content-type.' . $type );
 
             }
 
-            $client->set_add( 'psgi.request.remote_addr', $env->{REMOTE_ADDR},
-                $rate )
+            $client->set_add( 'psgi.request.remote_addr', $env->{REMOTE_ADDR} )
               if $env->{REMOTE_ADDR};
 
             my $h = Plack::Util::headers( $res->[1] );
@@ -70,23 +66,21 @@ sub call {
               || 'X-Sendfile';
 
             if ( $h->exists($xsendfile) ) {
-                $client->increment( 'psgi.response.x-sendfile', $rate );
+                $client->increment('psgi.response.x-sendfile');
             }
 
             if ( $h->exists('Content-Length') ) {
                 my $length = $h->get('Content-Length') || 0;
-                $client->$histogram( 'psgi.response.content-length',
-                    $length, $rate );
+                $client->$histogram( 'psgi.response.content-length', $length );
             }
 
             if ( my $type = $h->get('Content-Type') ) {
                 $type =~ s#/#.#g;
                 $type =~ s/;.*$//;
-                $client->increment( 'psgi.response.content-type.' . $type,
-                    $rate );
+                $client->increment( 'psgi.response.content-type.' . $type );
             }
 
-            $client->increment( 'psgi.response.status.' . $res->[0], $rate );
+            $client->increment( 'psgi.response.status.' . $res->[0] );
 
             if (
                   $env->{'psgix.harakiri.supported'}
@@ -94,7 +88,7 @@ sub call {
                 : $env->{'psgix.harakiri.commit'}
               )
             {
-                $client->increment( 'psgix.harakiri', $rate );
+                $client->increment('psgix.harakiri');
             }
 
             $client->flush if $client->can('flush');
@@ -113,8 +107,7 @@ sub call {
   builder {
 
     enable "Statsd",
-      client      => Net::Statsd::Client->new( ... ),
-      sample_rate => 1.0;
+      client      => Net::Statsd::Client->new( ... );
 
     ...
 
@@ -172,13 +165,6 @@ C<set_add>
 =back
 
 Other statsd client modules may be used via a wrapper class.
-
-=head2 sample_rate
-
-The default sampling rate to used. This will override the default rate
-of the L</client>.
-
-It defaults to C<1>.
 
 =head1 METRICS
 
