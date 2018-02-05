@@ -11,7 +11,7 @@ sub new {
     bless $self, $class;
 }
 
-foreach my $name (qw/ increment decrement update timing_ms set_add /) {
+foreach my $name (qw/ increment decrement update timing_ms set_add gauge /) {
     no strict 'refs';
     my $class = __PACKAGE__;
     *{"${class}::${name}"} = set_subname $name => sub {
