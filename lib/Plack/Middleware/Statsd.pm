@@ -14,7 +14,7 @@ use Plack::Util::Accessor qw/ client /;
 use POSIX ();
 use Time::HiRes;
 
-our $VERSION = 'v0.2.1';
+our $VERSION = 'v0.2.2';
 
 sub call {
     my ( $self, $env ) = @_;
