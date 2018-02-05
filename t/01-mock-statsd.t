@@ -36,7 +36,7 @@ test_psgi
 
         is $res->code, 200, join( " ", $req->method, $req->uri );
 
-        my @metrics = $stats->flush;
+        my @metrics = $stats->reset;
 
         cmp_deeply \@metrics,
           bag(
@@ -59,7 +59,7 @@ test_psgi
 
         is $res->code, 200, join( " ", $req->method, $req->uri );
 
-        my @metrics = $stats->flush;
+        my @metrics = $stats->reset;
 
         cmp_deeply \@metrics,
           bag(

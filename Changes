@@ -5,6 +5,9 @@ Revision history for Plack-Middleware-Statsd
   - Allow the statsd client to support the timing method as an
     alternative to the timing_ms method.
 
+  - Call client's flush method (if there is one) when done, to support
+    Net::Statsd::Tiny.
+
   [Documentation]
   - Added an example of accessing this statsd client from Catalyst.
 

@@ -20,7 +20,7 @@ foreach my $name (qw/ increment decrement update timing_ms set_add /) {
     };
 }
 
-sub flush {
+sub reset {
     my $self = shift;
     ( splice @{$self}, 0 );
 }

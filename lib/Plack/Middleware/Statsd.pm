@@ -97,6 +97,8 @@ sub call {
                 $client->increment( 'psgix.harakiri', $rate );
             }
 
+            $client->flush if $client->can('flush');
+
             return;
         }
     );
