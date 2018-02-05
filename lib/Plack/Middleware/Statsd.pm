@@ -256,6 +256,8 @@ You can access the configured statsd client from L<Catalyst>:
 
 L<Net::Statsd::Client>
 
+L<Net::Statsd::Tiny>
+
 L<PSGI>
 
 =head1 append:AUTHOR
