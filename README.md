@@ -15,8 +15,7 @@ use Net::Statsd::Client;
 builder {
 
   enable "Statsd",
-    client      => Net::Statsd::Client->new( ... ),
-    sample_rate => 1.0;
+    client      => Net::Statsd::Client->new( ... );
 
   ...
 
@@ -63,13 +62,6 @@ methods:
 - `set_add`
 
 Other statsd client modules may be used via a wrapper class.
-
-## sample\_rate
-
-The default sampling rate to used. This will override the default rate
-of the ["client"](#client).
-
-It defaults to `1`.
 
 # METRICS
 
@@ -158,6 +150,8 @@ sub finalize {
 # SEE ALSO
 
 [Net::Statsd::Client](https://metacpan.org/pod/Net::Statsd::Client)
+
+[Net::Statsd::Tiny](https://metacpan.org/pod/Net::Statsd::Tiny)
 
 [PSGI](https://metacpan.org/pod/PSGI)
 
