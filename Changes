@@ -7,6 +7,9 @@ Revision history for Plack-Middleware-Statsd
   [Tests]
   - Show diagnostics on failure.
 
+  [Other Changes]
+  - Added Net::Statsd::Tiny as a recommended prerequisite.
+
 v0.2.1    2018-02-05 14:16:07+00:00 Europe/London
   [Enhancements]
   - Allow the statsd client to support the timing method as an

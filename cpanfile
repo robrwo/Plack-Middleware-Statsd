@@ -8,6 +8,7 @@ requires "parent" => "0";
 requires "perl" => "v5.10.0";
 requires "strict" => "0";
 requires "warnings" => "0";
+recommends "Net::Statsd::Tiny" => "v0.2.0";
 
 on 'test' => sub {
   requires "File::Spec" => "0";
