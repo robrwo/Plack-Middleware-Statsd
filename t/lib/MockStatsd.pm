@@ -16,6 +16,7 @@ foreach my $name (qw/ increment decrement update timing_ms set_add gauge /) {
     my $class = __PACKAGE__;
     *{"${class}::${name}"} = set_subname $name => sub {
         my $self = shift;
+        die "Error" if $_[0] && $_[0] =~ 'POST';
         push @{$self}, [ $name, @_ ];
     };
 }
