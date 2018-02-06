@@ -147,6 +147,15 @@ sub finalize {
 }
 ```
 
+# KNOWN ISSUES
+
+## Support for older Perl versions
+
+This module requires Perl v5.10 or newer.
+
+Pull requests to support older versions of Perl are welcome. See
+["SOURCE"](#source).
+
 # SEE ALSO
 
 [Net::Statsd::Client](https://metacpan.org/pod/Net::Statsd::Client)

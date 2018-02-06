@@ -280,6 +280,15 @@ You can access the configured statsd client from L<Catalyst>:
     $c->next::method(@_);
   }
 
+=head1 KNOWN ISSUES
+
+=head2 Support for older Perl versions
+
+This module requires Perl v5.10 or newer.
+
+Pull requests to support older versions of Perl are welcome. See
+L</SOURCE>.
+
 =head1 SEE ALSO
 
 L<Net::Statsd::Client>
