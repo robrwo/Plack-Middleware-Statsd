@@ -1,6 +1,8 @@
 Revision history for Plack-Middleware-Statsd
 
 {{$NEXT}}
+  [Tests]
+  - Show diagnostics on failure.
 
 v0.2.1    2018-02-05 14:16:07+00:00 Europe/London
   [Enhancements]

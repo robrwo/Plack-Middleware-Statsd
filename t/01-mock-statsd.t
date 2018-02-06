@@ -50,7 +50,8 @@ test_psgi
             [ 'increment', 'psgi.response.content-type.text.plain', ],
             [ 'increment', 'psgi.response.status.200', ],
           ),
-          'expected metrics';
+          'expected metrics'
+          or note( explain \@metrics );
 
     };
 
@@ -73,7 +74,8 @@ test_psgi
             [ 'increment', 'psgi.response.content-type.text.plain', ],
             [ 'increment', 'psgi.response.status.200', ],
           ),
-          'expected metrics';
+          'expected metrics'
+          or note( explain \@metrics );
 
     };
 
