@@ -57,7 +57,7 @@ test_psgi
 
     subtest 'head' => sub {
 
-        my $req = GET '/';
+        my $req = HEAD '/';
         my $res = $cb->($req);
 
         is $res->code, 200, join( " ", $req->method, $req->uri );
@@ -68,7 +68,7 @@ test_psgi
           bag(
             [ 'timing_ms', 'psgi.response.time',           ignore(), ],
             [ 'timing_ms', 'psgi.request.content-length',  0, ],
-            [ 'increment', 'psgi.request.method.GET', ],
+            [ 'increment', 'psgi.request.method.HEAD', ],
             [ 'set_add',   'psgi.request.remote_addr',     '127.0.0.1', ],
             [ 'timing_ms', 'psgi.response.content-length', 2, ],
             [ 'increment', 'psgi.response.content-type.text.plain', ],
