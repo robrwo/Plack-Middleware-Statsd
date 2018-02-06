@@ -3,6 +3,7 @@ requires "Plack::Middleware" => "0";
 requires "Plack::Util" => "0";
 requires "Plack::Util::Accessor" => "0";
 requires "Time::HiRes" => "0";
+requires "Try::Tiny" => "0";
 requires "parent" => "0";
 requires "perl" => "v5.10.0";
 requires "strict" => "0";
