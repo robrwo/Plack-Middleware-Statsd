@@ -4,7 +4,7 @@ Plack::Middleware::Statsd - send statistics to statsd
 
 # VERSION
 
-version v0.3.0
+version v0.3.1
 
 # SYNOPSIS
 
@@ -124,8 +124,8 @@ The following metrics are logged:
 
     This counter is incremented when the harakiri flag is set.
 
-If you want to rename these, then you will need to use a wrapper
-class for the ["client"](#client).
+If you want to rename these, or modify sampling rates, then you will
+need to use a wrapper class for the ["client"](#client).
 
 # EXAMPLES
 

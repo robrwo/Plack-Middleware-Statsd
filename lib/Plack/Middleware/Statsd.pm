@@ -259,8 +259,8 @@ This counter is incremented when the harakiri flag is set.
 
 =back
 
-If you want to rename these, then you will need to use a wrapper
-class for the L</client>.
+If you want to rename these, or modify sampling rates, then you will
+need to use a wrapper class for the L</client>.
 
 =head1 EXAMPLES
 
