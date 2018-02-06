@@ -17,7 +17,7 @@ use POSIX ();
 use Time::HiRes;
 use Try::Tiny;
 
-our $VERSION = 'v0.3.0';
+our $VERSION = 'v0.3.1';
 
 sub call {
     my ( $self, $env ) = @_;

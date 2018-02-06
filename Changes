@@ -1,6 +1,8 @@
 Revision history for Plack-Middleware-Statsd
 
 {{$NEXT}}
+
+v0.3.0    2018-02-06 11:10:44+00:00 Europe/London
   [Enhancements]
   - Catch log errors when calling the statsd client, #1.
 
