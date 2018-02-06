@@ -1,6 +1,9 @@
 Revision history for Plack-Middleware-Statsd
 
 {{$NEXT}}
+  [Enhancements]
+  - Catch log errors when calling the statsd client, #1.
+
   [Tests]
   - Show diagnostics on failure.
 

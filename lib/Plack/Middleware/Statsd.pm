@@ -13,6 +13,7 @@ use Plack::Util;
 use Plack::Util::Accessor qw/ client /;
 use POSIX ();
 use Time::HiRes;
+use Try::Tiny;
 
 our $VERSION = 'v0.2.2';
 
@@ -33,30 +34,53 @@ sub call {
             return unless $client;
 
             my $histogram = $client->can('timing') // $client->can('timing_ms');
+            my $increment = $client->can('increment');
+            my $set_count = $client->can('set_add');
+
+            my $logger  = $env->{'psgix.logger'};
+            my $measure = sub {
+                my ( $method, @args ) = @_;
+                try {
+                    return unless defined $method;
+                    $client->$method(@args);
+                }
+                catch {
+                    if ($logger) {
+                        $logger->( { message => $_, level => 'error' } );
+                    }
+                    else {
+                        $env->{'psgi.errors'}->print($_);
+                    }
+                };
+            };
 
             my $elapsed = Time::HiRes::tv_interval($start);
 
-            $client->$histogram( 'psgi.response.time',
-                POSIX::ceil( $elapsed * 1000 ) );
+            $measure->(
+                $histogram, 'psgi.response.time', POSIX::ceil( $elapsed * 1000 )
+            );
 
             if ( defined $env->{CONTENT_LENGTH} ) {
-                $client->$histogram( 'psgi.request.content-length',
-                    $env->{CONTENT_LENGTH} );
+                $measure->(
+                    $histogram, 'psgi.request.content-length',
+                    $env->{CONTENT_LENGTH}
+                );
             }
 
             if ( my $method = $env->{REQUEST_METHOD} ) {
-                $client->increment( 'psgi.request.method.' . $method );
+                $measure->( $increment, 'psgi.request.method.' . $method );
             }
 
             if ( my $type = $env->{CONTENT_TYPE} ) {
                 $type =~ s#/#.#g;
                 $type =~ s/;.*$//;
-                $client->increment( 'psgi.request.content-type.' . $type );
+                $measure->( $increment, 'psgi.request.content-type.' . $type );
 
             }
 
-            $client->set_add( 'psgi.request.remote_addr', $env->{REMOTE_ADDR} )
-              if $env->{REMOTE_ADDR};
+            $measure->(
+                $set_count, 'psgi.request.remote_addr', $env->{REMOTE_ADDR}
+            ) if $env->{REMOTE_ADDR};
 
             my $h = Plack::Util::headers( $res->[1] );
 
@@ -66,21 +90,23 @@ sub call {
               || 'X-Sendfile';
 
             if ( $h->exists($xsendfile) ) {
-                $client->increment('psgi.response.x-sendfile');
+                $measure->( $increment, 'psgi.response.x-sendfile' );
             }
 
             if ( $h->exists('Content-Length') ) {
                 my $length = $h->get('Content-Length') || 0;
-                $client->$histogram( 'psgi.response.content-length', $length );
+                $measure->(
+                    $histogram, 'psgi.response.content-length', $length
+                );
             }
 
             if ( my $type = $h->get('Content-Type') ) {
                 $type =~ s#/#.#g;
                 $type =~ s/;.*$//;
-                $client->increment( 'psgi.response.content-type.' . $type );
+                $measure->( $increment, 'psgi.response.content-type.' . $type );
             }
 
-            $client->increment( 'psgi.response.status.' . $res->[0] );
+            $measure->( $increment, 'psgi.response.status.' . $res->[0] );
 
             if (
                   $env->{'psgix.harakiri.supported'}
@@ -88,10 +114,10 @@ sub call {
                 : $env->{'psgix.harakiri.commit'}
               )
             {
-                $client->increment('psgix.harakiri');
+                $measure->( $increment, 'psgix.harakiri' );
             }
 
-            $client->flush if $client->can('flush');
+            $measure->( $client->can('flush') );
 
             return;
         }
