@@ -2,7 +2,7 @@ package Plack::Middleware::Statsd;
 
 # ABSTRACT: send statistics to statsd
 
-# RECOMMEND PREREQ:  Net::Statsd::Tiny v0.2.0
+# RECOMMEND PREREQ:  Net::Statsd::Tiny v0.3.0
 
 use v5.10;
 
