@@ -13,7 +13,6 @@ use parent qw/ Plack::Middleware /;
 
 use Plack::Util;
 use Plack::Util::Accessor qw/ client sample_rate /;
-use POSIX ();
 use Time::HiRes;
 use Try::Tiny;
 
@@ -63,7 +62,7 @@ sub call {
             my $elapsed = Time::HiRes::tv_interval($start);
 
             $measure->(
-                $histogram, 'psgi.response.time', POSIX::ceil( $elapsed * 1000 ), $rate
+                $histogram, 'psgi.response.time', $elapsed * 1000, $rate
             );
 
             if ( defined $env->{CONTENT_LENGTH} ) {
@@ -254,7 +253,11 @@ A counter for the HTTP status code is incremented.
 
 =item C<psgi.response.time>
 
-The response time, in ms (rounded up using C<ceil>).
+The response time, in ms.
+
+As of v0.3.1, this is no longer rounded up to an integer. If this
+causes problems with your statsd daemon, then you may need to use a
+subclassed version of your statsd client to work around this.
 
 =item C<psgi.response.x-sendfile>
 

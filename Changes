@@ -4,6 +4,10 @@ Revision history for Plack-Middleware-Statsd
   [Enhancements]
   - Re-added the sampling rate attribute.
 
+  [Incompatabilities]
+  - Logs a float for the response time, instead of an integer. This is
+    an enhancement, but may cause issues with some statsd daemons.
+
   [Documentation]
   - Added note about modifying sample rates.
 
