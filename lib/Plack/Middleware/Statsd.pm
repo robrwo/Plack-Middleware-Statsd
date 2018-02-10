@@ -145,8 +145,8 @@ sub call {
   builder {
 
     enable "Statsd",
-      client        => Net::Statsd::Tiny->new( ... ),
-      sampling_rate => 1.0;
+      client      => Net::Statsd::Tiny->new( ... ),
+      sample_rate => 1.0;
 
     ...
 
@@ -207,6 +207,13 @@ This has been tested with L<Net::Statsd::Lite> and
 L<Net::Statsd::Client>.
 
 Other statsd client modules may be used via a wrapper class.
+
+=head2 sample_rate
+
+The default sampling rate to used, which should be a value between 0 and 1.
+This will override the default rate of the L</client>, if there is one.
+
+The default is C<1>.
 
 =head1 METRICS
 
