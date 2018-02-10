@@ -15,7 +15,8 @@ use Net::Statsd::Client;
 builder {
 
   enable "Statsd",
-    client      => Net::Statsd::Client->new( ... );
+    client        => Net::Statsd::Tiny->new( ... ),
+    sampling_rate => 1.0;
 
   ...
 
@@ -45,7 +46,7 @@ to a statsd server.
 
 ## client
 
-This is a statsd client, such as an [Net::Statsd::Client](https://metacpan.org/pod/Net::Statsd::Client) object.
+This is a statsd client, such as an instance of [Net::Statsd::Tiny](https://metacpan.org/pod/Net::Statsd::Tiny).
 
 If one is omitted, then it will default to one defined in the
 environment hash at `psgix.monitor.statsd`.
@@ -54,12 +55,15 @@ environment hash at `psgix.monitor.statsd`.
 set.
 
 The only restriction on the client is that it has the same API as
-[Net::Statsd::Client](https://metacpan.org/pod/Net::Statsd::Client) or similar modules, by supporting the following
+[Net::Statsd::Tiny](https://metacpan.org/pod/Net::Statsd::Tiny) or similar modules, by supporting the following
 methods:
 
 - `increment`
 - `timing_ms` or `timing`
 - `set_add`
+
+This has been tested with [Net::Statsd::Lite](https://metacpan.org/pod/Net::Statsd::Lite) and
+[Net::Statsd::Client](https://metacpan.org/pod/Net::Statsd::Client).
 
 Other statsd client modules may be used via a wrapper class.
 
@@ -109,7 +113,11 @@ The following metrics are logged:
 
 - `psgi.response.time`
 
-    The response time, in ms (rounded up using `ceil`).
+    The response time, in ms.
+
+    As of v0.3.1, this is no longer rounded up to an integer. If this
+    causes problems with your statsd daemon, then you may need to use a
+    subclassed version of your statsd client to work around this.
 
 - `psgi.response.x-sendfile`
 
