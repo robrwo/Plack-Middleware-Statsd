@@ -15,6 +15,9 @@ Revision history for Plack-Middleware-Statsd
 
   - Updated the SYNOPSIS to show the recommended Statsd client.
 
+  - Updated the section for the client attribute on compatible Statsd
+    modules.
+
   [Other Changes]
   - Bumped version of Net::Statsd::Tiny as a recommended prerequisite.
 

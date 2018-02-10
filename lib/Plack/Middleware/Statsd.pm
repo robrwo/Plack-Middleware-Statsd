@@ -175,7 +175,7 @@ to a statsd server.
 
 =head2 client
 
-This is a statsd client, such as an L<Net::Statsd::Client> object.
+This is a statsd client, such as an instance of L<Net::Statsd::Tiny>.
 
 If one is omitted, then it will default to one defined in the
 environment hash at C<psgix.monitor.statsd>.
@@ -184,7 +184,7 @@ C<psgix.monitor.statsd> will be set to the current client if it is not
 set.
 
 The only restriction on the client is that it has the same API as
-L<Net::Statsd::Client> or similar modules, by supporting the following
+L<Net::Statsd::Tiny> or similar modules, by supporting the following
 methods:
 
 =over
@@ -202,6 +202,9 @@ C<timing_ms> or C<timing>
 C<set_add>
 
 =back
+
+This has been tested with L<Net::Statsd::Lite> and
+L<Net::Statsd::Client>.
 
 Other statsd client modules may be used via a wrapper class.
 
