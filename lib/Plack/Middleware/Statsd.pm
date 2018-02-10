@@ -12,7 +12,7 @@ use warnings;
 use parent qw/ Plack::Middleware /;
 
 use Plack::Util;
-use Plack::Util::Accessor qw/ client /;
+use Plack::Util::Accessor qw/ client sample_rate /;
 use POSIX ();
 use Time::HiRes;
 use Try::Tiny;
@@ -35,6 +35,10 @@ sub call {
 
             return unless $client;
 
+            my $rate = $self->sample_rate;
+
+            $rate = undef if ( defined $rate ) && ( $rate >= 1 );
+
             my $histogram = $client->can('timing') // $client->can('timing_ms');
             my $increment = $client->can('increment');
             my $set_count = $client->can('set_add');
@@ -44,7 +48,7 @@ sub call {
                 my ( $method, @args ) = @_;
                 try {
                     return unless defined $method;
-                    $client->$method(@args);
+                    $client->$method( grep { defined $_ } @args );
                 }
                 catch {
                     if ($logger) {
@@ -59,24 +63,28 @@ sub call {
             my $elapsed = Time::HiRes::tv_interval($start);
 
             $measure->(
-                $histogram, 'psgi.response.time', POSIX::ceil( $elapsed * 1000 )
+                $histogram, 'psgi.response.time', POSIX::ceil( $elapsed * 1000 ), $rate
             );
 
             if ( defined $env->{CONTENT_LENGTH} ) {
                 $measure->(
                     $histogram, 'psgi.request.content-length',
-                    $env->{CONTENT_LENGTH}
+                    $env->{CONTENT_LENGTH}, $rate
                 );
             }
 
             if ( my $method = $env->{REQUEST_METHOD} ) {
-                $measure->( $increment, 'psgi.request.method.' . $method );
+                $measure->(
+                    $increment, 'psgi.request.method.' . $method, $rate
+                );
             }
 
             if ( my $type = $env->{CONTENT_TYPE} ) {
                 $type =~ s#/#.#g;
                 $type =~ s/;.*$//;
-                $measure->( $increment, 'psgi.request.content-type.' . $type );
+                $measure->(
+                    $increment, 'psgi.request.content-type.' . $type, $rate
+                );
 
             }
 
@@ -105,10 +113,13 @@ sub call {
             if ( my $type = $h->get('Content-Type') ) {
                 $type =~ s#/#.#g;
                 $type =~ s/;.*$//;
-                $measure->( $increment, 'psgi.response.content-type.' . $type );
+                $measure->(
+                    $increment, 'psgi.response.content-type.' . $type, $rate
+                );
             }
 
-            $measure->( $increment, 'psgi.response.status.' . $res->[0] );
+            $measure->( $increment, 'psgi.response.status.' . $res->[0],
+                $rate );
 
             if (
                   $env->{'psgix.harakiri.supported'}
@@ -116,7 +127,7 @@ sub call {
                 : $env->{'psgix.harakiri.commit'}
               )
             {
-                $measure->( $increment, 'psgix.harakiri' );
+                $measure->( $increment, 'psgix.harakiri' );    # rate == 1
             }
 
             $measure->( $client->can('flush') );
@@ -135,7 +146,8 @@ sub call {
   builder {
 
     enable "Statsd",
-      client      => Net::Statsd::Client->new( ... );
+      client      => Net::Statsd::Client->new( ... ),
+      sampling_rate => 1.0;
 
     ...
 

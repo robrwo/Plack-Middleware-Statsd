@@ -1,6 +1,9 @@
 Revision history for Plack-Middleware-Statsd
 
 {{$NEXT}}
+  [Enhancements]
+  - Re-added the sampling rate attribute.
+
   [Documentation]
   - Added note about modifying sample rates.
 
