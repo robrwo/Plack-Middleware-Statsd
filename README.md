@@ -4,7 +4,7 @@ Plack::Middleware::Statsd - send statistics to statsd
 
 # VERSION
 
-version v0.3.1
+version v0.3.2
 
 # SYNOPSIS
 
@@ -15,8 +15,8 @@ use Net::Statsd::Client;
 builder {
 
   enable "Statsd",
-    client        => Net::Statsd::Tiny->new( ... ),
-    sampling_rate => 1.0;
+    client      => Net::Statsd::Tiny->new( ... ),
+    sample_rate => 1.0;
 
   ...
 
@@ -66,6 +66,13 @@ This has been tested with [Net::Statsd::Lite](https://metacpan.org/pod/Net::Stat
 [Net::Statsd::Client](https://metacpan.org/pod/Net::Statsd::Client).
 
 Other statsd client modules may be used via a wrapper class.
+
+## sample\_rate
+
+The default sampling rate to used, which should be a value between 0 and 1.
+This will override the default rate of the ["client"](#client), if there is one.
+
+The default is `1`.
 
 # METRICS
 
