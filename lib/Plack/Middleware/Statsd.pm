@@ -145,7 +145,7 @@ sub call {
   builder {
 
     enable "Statsd",
-      client      => Net::Statsd::Client->new( ... ),
+      client        => Net::Statsd::Tiny->new( ... ),
       sampling_rate => 1.0;
 
     ...

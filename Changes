@@ -13,6 +13,8 @@ Revision history for Plack-Middleware-Statsd
 
   - Added note about support for older Perl versions.
 
+  - Updated the SYNOPSIS to show the recommended Statsd client.
+
   [Other Changes]
   - Bumped version of Net::Statsd::Tiny as a recommended prerequisite.
 
