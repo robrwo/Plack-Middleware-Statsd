@@ -140,7 +140,7 @@ sub call {
 =head1 SYNOPSIS
 
   use Plack::Builder;
-  use Net::Statsd::Client;
+  use Net::Statsd::Tiny;
 
   builder {
 

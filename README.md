@@ -10,7 +10,7 @@ version v0.3.3
 
 ```perl
 use Plack::Builder;
-use Net::Statsd::Client;
+use Net::Statsd::Tiny;
 
 builder {
 
