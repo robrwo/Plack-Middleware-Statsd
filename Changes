@@ -1,6 +1,8 @@
 Revision history for Plack-Middleware-Statsd
 
 {{$NEXT}}
+
+v0.3.3    2018-02-13 15:24:11+00:00 Europe/London
   [Documentation]
   - Fixed module import in SYNOPSIS.
 

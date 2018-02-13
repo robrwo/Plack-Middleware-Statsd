@@ -16,7 +16,7 @@ use Plack::Util::Accessor qw/ client sample_rate /;
 use Time::HiRes;
 use Try::Tiny;
 
-our $VERSION = 'v0.3.3';
+our $VERSION = 'v0.3.4';
 
 sub call {
     my ( $self, $env ) = @_;
