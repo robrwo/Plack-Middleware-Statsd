@@ -79,6 +79,7 @@ sub call {
             }
 
             if ( my $type = $env->{CONTENT_TYPE} ) {
+                $type =~ s#\.#-#g;
                 $type =~ s#/#.#g;
                 $type =~ s/;.*$//;
                 $measure->(
@@ -110,6 +111,7 @@ sub call {
             }
 
             if ( my $type = $h->get('Content-Type') ) {
+                $type =~ s#\.#-#g;
                 $type =~ s#/#.#g;
                 $type =~ s/;.*$//;
                 $measure->(
