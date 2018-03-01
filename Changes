@@ -1,6 +1,8 @@
 Revision history for Plack-Middleware-Statsd
 
 {{$NEXT}}
+
+v0.3.4    2018-03-01 15:39:03+00:00 Europe/London
   [Bug Fixes]
   - Fix bug with counting content types that contain dots, e.g.
     "image/vnd.microsoft.icon".
