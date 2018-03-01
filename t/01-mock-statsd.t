@@ -131,6 +131,7 @@ test_psgi
           'errors logged'
           or note( explain \@logs );
 
+        @logs = ();
     };
 
   };
