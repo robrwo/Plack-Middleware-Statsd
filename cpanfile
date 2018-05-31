@@ -2,6 +2,7 @@ requires "Plack::Middleware" => "0";
 requires "Try::Tiny" => "0";
 requires "parent" => "0";
 requires "perl" => "v5.10.0";
+recommends "HTTP::Status" => "6.16";
 recommends "Net::Statsd::Tiny" => "v0.3.0";
 
 on 'test' => sub {

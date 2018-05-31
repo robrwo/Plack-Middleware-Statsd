@@ -3,6 +3,7 @@ package Plack::Middleware::Statsd;
 # ABSTRACT: send statistics to statsd
 
 # RECOMMEND PREREQ:  Net::Statsd::Tiny v0.3.0
+# RECOMMEND PREREQ:  HTTP::Status 6.16
 
 use v5.10;
 
