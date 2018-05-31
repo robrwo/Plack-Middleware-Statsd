@@ -7,6 +7,8 @@ Revision history for Plack-Middleware-Statsd
   [Toolchain]
   - Removed redundant prerequisites from cpanfile and META files.
 
+  - Added keywords to distribution metadata.
+
   [Other Changes]
   - Added HTTP::Stats 6.16 as a recommended prerequisite, #2.
 
