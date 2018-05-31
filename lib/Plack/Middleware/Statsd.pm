@@ -309,6 +309,11 @@ You can access the configured statsd client from L<Catalyst>:
 
 =head1 KNOWN ISSUES
 
+=head2 Non-standard HTTP status codes
+
+If your application is returning a status code that is not handled by
+L<HTTP::Status>, then the metrics may not be logged for that reponse.
+
 =head2 Support for older Perl versions
 
 This module requires Perl v5.10 or newer.

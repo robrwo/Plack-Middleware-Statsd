@@ -1,6 +1,9 @@
 Revision history for Plack-Middleware-Statsd
 
 {{$NEXT}}
+  [Documentation]
+  - Documented a known issue about non-standard status codes, #2.
+
   [Toolchain]
   - Removed redundant prerequisites from cpanfile and META files.
 
