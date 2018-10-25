@@ -4,6 +4,9 @@ Revision history for Plack-Middleware-Statsd
   [Documentation]
   - Added INSTALL file to the distribution.
 
+  [Toolchain]
+  - Tweaks to dist.ini for simplifying build.
+
 v0.3.7    2018-10-19 16:06:50+01:00 Europe/London
   [Toolchain]
   - Added MANIFEST.SKIP to distribution.
