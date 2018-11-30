@@ -1,6 +1,8 @@
 Revision history for Plack-Middleware-Statsd
 
 {{$NEXT}}
+
+v0.3.8    2018-11-30 01:30:27+00:00 Europe/London
   [Documentation]
   - Added INSTALL file to the distribution.
 
