@@ -163,6 +163,8 @@ sub finalize {
 }
 ```
 
+Alternatively, you can use [Catalyst::Plugin::Statsd](https://metacpan.org/pod/Catalyst::Plugin::Statsd).
+
 # KNOWN ISSUES
 
 ## Non-standard HTTP status codes

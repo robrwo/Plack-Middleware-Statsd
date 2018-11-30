@@ -309,6 +309,8 @@ You can access the configured statsd client from L<Catalyst>:
     $c->next::method(@_);
   }
 
+Alternatively, you can use L<Catalyst::Plugin::Statsd>.
+
 =head1 KNOWN ISSUES
 
 =head2 Non-standard HTTP status codes
