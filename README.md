@@ -132,7 +132,7 @@ The following metrics are logged:
     This counter is incremented when the `X-Sendfile` header is added.
 
     The header is configured using the `plack.xsendfile.type` environment
-    key, ortherwise the `HTTP_X_SENDFILE_TYPE` environment variable.
+    key, otherwise the `HTTP_X_SENDFILE_TYPE` environment variable.
 
     See [Plack::Middleware::XSendfile](https://metacpan.org/pod/Plack::Middleware::XSendfile) for more information.
 

@@ -278,7 +278,7 @@ subclassed version of your statsd client to work around this.
 This counter is incremented when the C<X-Sendfile> header is added.
 
 The header is configured using the C<plack.xsendfile.type> environment
-key, ortherwise the C<HTTP_X_SENDFILE_TYPE> environment variable.
+key, otherwise the C<HTTP_X_SENDFILE_TYPE> environment variable.
 
 See L<Plack::Middleware::XSendfile> for more information.
 
