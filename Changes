@@ -1,6 +1,8 @@
 Revision history for Plack-Middleware-Statsd
 
 {{$NEXT}}
+
+v0.3.10   2019-12-18 23:45:32+00:00 Europe/London
   [Enhancements]
   - Added psgi.worker.pid metric for tracking the number of active workers, #4.
 
