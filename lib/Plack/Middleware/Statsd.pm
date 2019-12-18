@@ -93,6 +93,8 @@ sub call {
                 $set_count, 'psgi.request.remote_addr', $env->{REMOTE_ADDR}
             ) if $env->{REMOTE_ADDR};
 
+            $measure->( $set_count, 'psgi.worker.pid', $$ );
+
             my $h = Plack::Util::headers( $res->[1] );
 
             my $xsendfile =
@@ -281,6 +283,10 @@ The header is configured using the C<plack.xsendfile.type> environment
 key, otherwise the C<HTTP_X_SENDFILE_TYPE> environment variable.
 
 See L<Plack::Middleware::XSendfile> for more information.
+
+=item C<psgi.worker.pid>
+
+The worker PID is added to the set.
 
 =item C<psgix.harakiri>
 

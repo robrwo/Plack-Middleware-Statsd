@@ -136,6 +136,10 @@ The following metrics are logged:
 
     See [Plack::Middleware::XSendfile](https://metacpan.org/pod/Plack::Middleware::XSendfile) for more information.
 
+- `psgi.worker.pid`
+
+    The worker PID is added to the set.
+
 - `psgix.harakiri`
 
     This counter is incremented when the harakiri flag is set.
