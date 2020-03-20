@@ -1,6 +1,19 @@
 Revision history for Plack-Middleware-Statsd
 
 {{$NEXT}}
+  [Enhancements]
+  - Some initialisation is done beforehand, which should result in a
+    slight performance improvement.
+
+  - Added histogram, increment and set_count attributes which refer to
+    their corresponding client methods.
+
+  [Incompatabilities]
+  - The client is required, and not initialised from the
+    psgix.monitor.statsd key in the environment.
+
+  [Other]
+  - Renamed internal variables for consistency.
 
 v0.3.10   2019-12-18 23:45:32+00:00 Europe/London
   [Enhancements]

@@ -13,17 +13,34 @@ use warnings;
 use parent qw/ Plack::Middleware /;
 
 use Plack::Util;
-use Plack::Util::Accessor qw/ client sample_rate /;
+use Plack::Util::Accessor
+    qw/ client sample_rate histogram increment set_add /;
 use Time::HiRes;
 use Try::Tiny;
 
 our $VERSION = 'v0.3.11';
 
+sub prepare_app {
+    my ($self) = @_;
+
+    if (my $client = $self->client) {
+        foreach my $init (
+            [qw/ histogram timing    /],
+            [qw/ histogram timing_ms /],
+            [qw/ increment increment /],
+            [qw/ set_add   set_add   /],
+            ) {
+            my ($attr, $method) = @$init;
+            next if defined $self->$attr;
+            $self->$attr( $client->can($method) );
+        }
+    }
+}
+
 sub call {
     my ( $self, $env ) = @_;
 
-    my $client = $self->client // $env->{'psgix.monitor.statsd'};
-    $env->{'psgix.monitor.statsd'} //= $client;
+    my $client = ( $env->{'psgix.monitor.statsd'} //= $self->client );
 
     my $start = [Time::HiRes::gettimeofday];
     my $res   = $self->app->($env);
@@ -39,15 +56,15 @@ sub call {
 
             $rate = undef if ( defined $rate ) && ( $rate >= 1 );
 
-            my $histogram = $client->can('timing') // $client->can('timing_ms');
-            my $increment = $client->can('increment');
-            my $set_count = $client->can('set_add');
+            my $histogram = $self->histogram;
+            my $increment = $self->increment;
+            my $set_add   = $self->set_add;;
 
             my $logger  = $env->{'psgix.logger'};
             my $measure = sub {
                 my ( $method, @args ) = @_;
+                return unless defined $method;
                 try {
-                    return unless defined $method;
                     $client->$method( grep { defined $_ } @args );
                 }
                 catch {
@@ -90,10 +107,10 @@ sub call {
             }
 
             $measure->(
-                $set_count, 'psgi.request.remote_addr', $env->{REMOTE_ADDR}
+                $set_add, 'psgi.request.remote_addr', $env->{REMOTE_ADDR}
             ) if $env->{REMOTE_ADDR};
 
-            $measure->( $set_count, 'psgi.worker.pid', $$ );
+            $measure->( $set_add, 'psgi.worker.pid', $$ );
 
             my $h = Plack::Util::headers( $res->[1] );
 
@@ -220,6 +237,21 @@ The default sampling rate to be used, which should be a value between
 there is one.
 
 The default is C<1>.
+
+=head2 histogram
+
+This is the C<timing> method used by L</client>. You do not need to
+set this unless you want to override it.
+
+=head2 increment
+
+This is the C<increment> method used by the L</client>. You do not
+need to set this unless you want to override it.
+
+=head2 set_add
+
+This is the C<set_add> method used by the L</client>. You do not
+need to set this unless you want to override it.
 
 =head1 METRICS
 
