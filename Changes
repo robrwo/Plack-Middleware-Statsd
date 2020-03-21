@@ -1,6 +1,11 @@
 Revision history for Plack-Middleware-Statsd
 
 {{$NEXT}}
+  [Tests]
+  - Added tests for how errors are trapped and logged.
+
+  - Add Test::Pod::LinkCheck author test.
+
   [Other]
   - Explicitly declare List::Util and Time::HiRes as prereqs.
 
