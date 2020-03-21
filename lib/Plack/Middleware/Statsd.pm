@@ -4,6 +4,7 @@ package Plack::Middleware::Statsd;
 
 # RECOMMEND PREREQ:  Net::Statsd::Tiny v0.3.0
 # RECOMMEND PREREQ:  HTTP::Status 6.16
+# RECOMMEND PREREQ:  List::Util::XS
 
 use v5.10;
 
@@ -12,6 +13,7 @@ use warnings;
 
 use parent qw/ Plack::Middleware /;
 
+use List::Util qw/ first /;
 use Plack::Util;
 use Plack::Util::Accessor
     qw/ client sample_rate histogram increment set_add /;
@@ -23,16 +25,34 @@ our $VERSION = 'v0.3.11';
 sub prepare_app {
     my ($self) = @_;
 
-    if (my $client = $self->client) {
+    if ( my $client = $self->client ) {
         foreach my $init (
-            [qw/ histogram timing    /],
-            [qw/ histogram timing_ms /],
+            [qw/ histogram timing_ms timing /],
             [qw/ increment increment /],
             [qw/ set_add   set_add   /],
-            ) {
-            my ($attr, $method) = @$init;
+          )
+        {
+            my ( $attr, @methods ) = @$init;
             next if defined $self->$attr;
-            $self->$attr( $client->can($method) );
+            my $method = first { $client->can($_) } @methods;
+            $self->$attr(
+                sub {
+                    my ($env, @args) = @_;
+                    return unless defined $method;
+                    try {
+                        $client->$method( grep { defined $_ } @args );
+                    }
+                    catch {
+                        if (my $logger = $env->{'psgix.logger'}) {
+                            $logger->( { message => $_, level => 'error' } );
+                        }
+                        else {
+                            $env->{'psgi.errors'}->print($_);
+                        }
+                    };
+
+                }
+            );
         }
     }
 }
@@ -58,59 +78,34 @@ sub call {
 
             my $histogram = $self->histogram;
             my $increment = $self->increment;
-            my $set_add   = $self->set_add;;
-
-            my $logger  = $env->{'psgix.logger'};
-            my $measure = sub {
-                my ( $method, @args ) = @_;
-                return unless defined $method;
-                try {
-                    $client->$method( grep { defined $_ } @args );
-                }
-                catch {
-                    if ($logger) {
-                        $logger->( { message => $_, level => 'error' } );
-                    }
-                    else {
-                        $env->{'psgi.errors'}->print($_);
-                    }
-                };
-            };
+            my $set_add   = $self->set_add;
 
             my $elapsed = Time::HiRes::tv_interval($start);
 
-            $measure->(
-                $histogram, 'psgi.response.time', $elapsed * 1000, $rate
-            );
+            $histogram->( $env, 'psgi.response.time', $elapsed * 1000, $rate );
 
             if ( defined $env->{CONTENT_LENGTH} ) {
-                $measure->(
-                    $histogram, 'psgi.request.content-length',
+                $histogram->( $env,
+                    'psgi.request.content-length',
                     $env->{CONTENT_LENGTH}, $rate
                 );
             }
 
             if ( my $method = $env->{REQUEST_METHOD} ) {
-                $measure->(
-                    $increment, 'psgi.request.method.' . $method, $rate
-                );
+                $increment->( $env, 'psgi.request.method.' . $method, $rate );
             }
 
             if ( my $type = $env->{CONTENT_TYPE} ) {
                 $type =~ s#\.#-#g;
                 $type =~ s#/#.#g;
                 $type =~ s/;.*$//;
-                $measure->(
-                    $increment, 'psgi.request.content-type.' . $type, $rate
-                );
-
+                $increment->( $env, 'psgi.request.content-type.' . $type, $rate );
             }
 
-            $measure->(
-                $set_add, 'psgi.request.remote_addr', $env->{REMOTE_ADDR}
-            ) if $env->{REMOTE_ADDR};
+            $set_add->( $env, 'psgi.request.remote_addr', $env->{REMOTE_ADDR} )
+                if $env->{REMOTE_ADDR};
 
-            $measure->( $set_add, 'psgi.worker.pid', $$ );
+            $set_add->( $env, 'psgi.worker.pid', $$ );
 
             my $h = Plack::Util::headers( $res->[1] );
 
@@ -120,27 +115,22 @@ sub call {
               || 'X-Sendfile';
 
             if ( $h->exists($xsendfile) ) {
-                $measure->( $increment, 'psgi.response.x-sendfile' );
+                $increment->( $env, 'psgi.response.x-sendfile' );
             }
 
             if ( $h->exists('Content-Length') ) {
                 my $length = $h->get('Content-Length') || 0;
-                $measure->(
-                    $histogram, 'psgi.response.content-length', $length
-                );
+                $histogram->( $env, 'psgi.response.content-length', $length );
             }
 
             if ( my $type = $h->get('Content-Type') ) {
                 $type =~ s#\.#-#g;
                 $type =~ s#/#.#g;
                 $type =~ s/;.*$//;
-                $measure->(
-                    $increment, 'psgi.response.content-type.' . $type, $rate
-                );
+                $increment->( $env, 'psgi.response.content-type.' . $type, $rate );
             }
 
-            $measure->( $increment, 'psgi.response.status.' . $res->[0],
-                $rate );
+            $increment->( $env, 'psgi.response.status.' . $res->[0], $rate );
 
             if (
                   $env->{'psgix.harakiri.supported'}
@@ -148,10 +138,10 @@ sub call {
                 : $env->{'psgix.harakiri.commit'}
               )
             {
-                $measure->( $increment, 'psgix.harakiri' );    # rate == 1
+                $increment->( $env, 'psgix.harakiri' );    # rate == 1
             }
 
-            $measure->( $client->can('flush') );
+            $client->flush if $client->can('flush');
 
             return;
         }
@@ -240,18 +230,31 @@ The default is C<1>.
 
 =head2 histogram
 
-This is the C<timing> method used by L</client>. You do not need to
-set this unless you want to override it.
+This is a code reference to a wrapper around the L</client> C<timing>
+method.  You do not need to set this unless you want to override it.
+
+It takes as arguments the Plack environment and the arguments to pass
+to the client method, and calls that method.  If there are errors then
+it attempts to log them.
 
 =head2 increment
 
-This is the C<increment> method used by the L</client>. You do not
-need to set this unless you want to override it.
+This is a code reference to a wrapper around the L</client>
+C<increment> method.  You do not need to set this unless you want to
+override it.
+
+It takes as arguments the Plack environment and the arguments to pass
+to the client method, and calls that method.  If there are errors then
+it attempts to log them.
 
 =head2 set_add
 
-This is the C<set_add> method used by the L</client>. You do not
-need to set this unless you want to override it.
+This is a code reference to a wrapper around the L</client> C<set_add>
+method.  You do not need to set this unless you want to override it.
+
+It takes as arguments the Plack environment and the arguments to pass
+to the client method, and calls that method.  If there are errors then
+it attempts to log them.
 
 =head1 METRICS
 

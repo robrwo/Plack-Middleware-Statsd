@@ -5,8 +5,8 @@ Revision history for Plack-Middleware-Statsd
   - Some initialisation is done beforehand, which should result in a
     slight performance improvement.
 
-  - Added histogram, increment and set_count attributes which refer to
-    their corresponding client methods.
+  - Added histogram, increment and set_count attributes which are
+    code references for methods that do the actual logging.
 
   [Incompatabilities]
   - The client is required, and not initialised from the
