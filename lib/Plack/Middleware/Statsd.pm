@@ -178,7 +178,6 @@ sub call {
 
       }
 
-
     };
 
   };
@@ -345,8 +344,6 @@ You can access the configured statsd client from L<Catalyst>:
 
     if (my $statsd = $c->req->env->{'psgix.monitor.statsd'}) {
       ...
-
-
     }
 
     $c->next::method(@_);
@@ -373,7 +370,6 @@ L<PSGI>
 
 The initial development of this module was sponsored by Science Photo
 Library L<https://www.sciencephoto.com>.
-
 
 =cut
 
