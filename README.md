@@ -48,8 +48,7 @@ to a statsd server.
 
 This is a statsd client, such as an instance of [Net::Statsd::Tiny](https://metacpan.org/pod/Net::Statsd::Tiny).
 
-If one is omitted, then it will default to one defined in the
-environment hash at `psgix.monitor.statsd`.
+It is required.
 
 `psgix.monitor.statsd` will be set to the current client if it is not
 set.
@@ -74,6 +73,34 @@ The default sampling rate to be used, which should be a value between
 there is one.
 
 The default is `1`.
+
+## histogram
+
+This is a code reference to a wrapper around the ["client"](#client) `timing`
+method.  You do not need to set this unless you want to override it.
+
+It takes as arguments the Plack environment and the arguments to pass
+to the client method, and calls that method.  If there are errors then
+it attempts to log them.
+
+## increment
+
+This is a code reference to a wrapper around the ["client"](#client)
+`increment` method.  You do not need to set this unless you want to
+override it.
+
+It takes as arguments the Plack environment and the arguments to pass
+to the client method, and calls that method.  If there are errors then
+it attempts to log them.
+
+## set\_add
+
+This is a code reference to a wrapper around the ["client"](#client) `set_add`
+method.  You do not need to set this unless you want to override it.
+
+It takes as arguments the Plack environment and the arguments to pass
+to the client method, and calls that method.  If there are errors then
+it attempts to log them.
 
 # METRICS
 
