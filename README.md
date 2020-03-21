@@ -31,7 +31,6 @@ builder {
 
     }
 
-
   };
 
 };
@@ -186,8 +185,6 @@ sub finalize {
 
   if (my $statsd = $c->req->env->{'psgix.monitor.statsd'}) {
     ...
-
-
   }
 
   $c->next::method(@_);
