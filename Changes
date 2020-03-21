@@ -1,6 +1,8 @@
 Revision history for Plack-Middleware-Statsd
 
 {{$NEXT}}
+
+v0.4.2    2020-03-21 18:28:31+00:00 Europe/London (TRIAL RELEASE)
   [Enhancements]
   - Emit warnings if the client does not support expected methods.
 
