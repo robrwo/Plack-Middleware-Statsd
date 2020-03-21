@@ -4,6 +4,9 @@ Revision history for Plack-Middleware-Statsd
   [Enhancements]
   - Emit warnings if the client does not support expected methods.
 
+  - Die if the histogram, increment or set_add attributes are not
+    coderefs.
+
   [Tests]
   - Added tests for how errors are trapped and logged.
 

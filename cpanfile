@@ -3,6 +3,7 @@
 
 requires "List::Util" => "0";
 requires "Plack::Middleware" => "0";
+requires "Ref::Util" => "0";
 requires "Time::HiRes" => "0";
 requires "Try::Tiny" => "0";
 requires "parent" => "0";
@@ -10,6 +11,7 @@ requires "perl" => "v5.10.0";
 recommends "HTTP::Status" => "6.16";
 recommends "List::Util::XS" => "0";
 recommends "Net::Statsd::Tiny" => "v0.3.0";
+recommends "Ref::Util::XS" => "0";
 
 on 'test' => sub {
   requires "File::Spec" => "0";
@@ -22,8 +24,10 @@ on 'test' => sub {
   requires "Plack::Test" => "0";
   requires "Sub::Util" => "1.40";
   requires "Test::Differences" => "0";
+  requires "Test::MockObject" => "0";
   requires "Test::More" => "0";
   requires "Test::Most" => "0";
+  requires "Test::Warnings" => "0";
   requires "lib" => "0";
 };
 

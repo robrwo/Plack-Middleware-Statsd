@@ -5,6 +5,7 @@ package Plack::Middleware::Statsd;
 # RECOMMEND PREREQ:  Net::Statsd::Tiny v0.3.0
 # RECOMMEND PREREQ:  HTTP::Status 6.16
 # RECOMMEND PREREQ:  List::Util::XS
+# RECOMMEND PREREQ:  Ref::Util::XS
 
 use v5.10;
 
@@ -17,6 +18,7 @@ use List::Util qw/ first /;
 use Plack::Util;
 use Plack::Util::Accessor
     qw/ client sample_rate histogram increment set_add /;
+use Ref::Util qw/ is_coderef /;
 use Time::HiRes;
 use Try::Tiny;
 
@@ -62,6 +64,11 @@ sub prepare_app {
             );
         }
     }
+
+    if (my $attr = first { !is_coderef($self->$_) } qw/ histogram increment set_add /) {
+        die "$attr is not a coderef";
+    }
+
 }
 
 sub call {
