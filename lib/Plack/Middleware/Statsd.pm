@@ -120,7 +120,7 @@ sub call {
               || 'X-Sendfile';
 
             if ( $h->exists($xsendfile) ) {
-                $increment->( $env, 'psgi.response.x-sendfile' );
+                $increment->( $env, 'psgi.response.x-sendfile', $rate );
             }
 
             if ( $h->exists('Content-Length') ) {

@@ -1,6 +1,8 @@
 Revision history for Plack-Middleware-Statsd
 
 {{$NEXT}}
+  [Bug Fixes]
+  - Apply sample_rate to psgi.response.x-sendfile.
 
 v0.4.0    2020-03-21 00:24:40+00:00 Europe/London (TRIAL RELEASE)
   [Enhancements]
