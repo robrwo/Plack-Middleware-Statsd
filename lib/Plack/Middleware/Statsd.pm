@@ -22,6 +22,11 @@ use Try::Tiny;
 
 our $VERSION = 'v0.3.11';
 
+# Note: You may be able to omit the client if there is a client
+# defined in the environment hash at C<psgix.monitor.statsd>, and the
+# L</histogram>, L</increment> and L</attributes> are set.  But that
+# is a strange case and unsupported.
+
 sub prepare_app {
     my ($self) = @_;
 
@@ -187,8 +192,7 @@ to a statsd server.
 
 This is a statsd client, such as an instance of L<Net::Statsd::Tiny>.
 
-If one is omitted, then it will default to one defined in the
-environment hash at C<psgix.monitor.statsd>.
+It is required.
 
 C<psgix.monitor.statsd> will be set to the current client if it is not
 set.
