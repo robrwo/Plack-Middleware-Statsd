@@ -1,6 +1,9 @@
 Revision history for Plack-Middleware-Statsd
 
 {{$NEXT}}
+  [Enhancements]
+  - Emit warnings if the client does not support expected methods.
+
   [Tests]
   - Added tests for how errors are trapped and logged.
 

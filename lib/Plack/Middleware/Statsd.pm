@@ -40,6 +40,8 @@ sub prepare_app {
             my ( $attr, @methods ) = @$init;
             next if defined $self->$attr;
             my $method = first { $client->can($_) } @methods;
+            warn "No $attr method found for client " . ref($client)
+                unless defined $method;
             $self->$attr(
                 sub {
                     my ($env, @args) = @_;
