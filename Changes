@@ -12,6 +12,9 @@ Revision history for Plack-Middleware-Statsd
   - The client is required, and not initialised from the
     psgix.monitor.statsd key in the environment.
 
+  [Documentation]
+  - Made better use of Pod::Weaver commands.
+
   [Other]
   - Renamed internal variables for consistency.
 

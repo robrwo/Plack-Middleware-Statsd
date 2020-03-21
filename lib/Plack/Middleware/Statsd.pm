@@ -183,9 +183,7 @@ sub call {
 This middleware gathers metrics from the application send sends them
 to a statsd server.
 
-=head1 ATTRIBUTES
-
-=head2 client
+=attr client
 
 This is a statsd client, such as an instance of L<Net::Statsd::Tiny>.
 
@@ -220,7 +218,7 @@ L<Net::Statsd::Client>.
 
 Other statsd client modules may be used via a wrapper class.
 
-=head2 sample_rate
+=attr sample_rate
 
 The default sampling rate to be used, which should be a value between
 0 and 1.  This will override the default rate of the L</client>, if
@@ -228,7 +226,7 @@ there is one.
 
 The default is C<1>.
 
-=head2 histogram
+=attr histogram
 
 This is a code reference to a wrapper around the L</client> C<timing>
 method.  You do not need to set this unless you want to override it.
@@ -237,7 +235,7 @@ It takes as arguments the Plack environment and the arguments to pass
 to the client method, and calls that method.  If there are errors then
 it attempts to log them.
 
-=head2 increment
+=attr increment
 
 This is a code reference to a wrapper around the L</client>
 C<increment> method.  You do not need to set this unless you want to
@@ -247,7 +245,7 @@ It takes as arguments the Plack environment and the arguments to pass
 to the client method, and calls that method.  If there are errors then
 it attempts to log them.
 
-=head2 set_add
+=attr set_add
 
 This is a code reference to a wrapper around the L</client> C<set_add>
 method.  You do not need to set this unless you want to override it.
