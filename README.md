@@ -193,6 +193,40 @@ sub finalize {
 
 Alternatively, you can use [Catalyst::Plugin::Statsd](https://metacpan.org/pod/Catalyst::Plugin::Statsd).
 
+## Using with Plack::Middleware::SizeLimit
+
+[Plack::Middleware::SizeLimit](https://metacpan.org/pod/Plack::Middleware::SizeLimit) version 0.11 supports callbacks that
+allow you to monitor process size information.  In your `app.psgi`:
+
+```perl
+use Net::Statsd::Tiny;
+use Try::Tiny;
+
+my $statsd = Net::Statsd::Tiny->new( ... );
+
+builder {
+
+  enable "Statsd",
+    client      => $statsd,
+    sample_rate => 1.0;
+
+  ...
+
+  enable "SizeLimit",
+    ...
+    callback => sub {
+        my ($size, $shared, $unshared) = @_;
+        try {
+            $statsd->timing_ms('psgi.proc.size', $size);
+            $statsd->timing_ms('psgi.proc.shared', $shared);
+            $statsd->timing_ms('psgi.proc.unshared', $unshared);
+        }
+        catch {
+            warn $_;
+        };
+    };
+```
+
 # KNOWN ISSUES
 
 ## Non-standard HTTP status codes
