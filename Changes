@@ -1,6 +1,8 @@
 Revision history for Plack-Middleware-Statsd
 
 {{$NEXT}}
+
+v0.4.4    2020-04-30 14:04:10+01:00 Europe/London
   [Documentation]
   - Added example with Plack::Middleware::SizeLimit.
 
