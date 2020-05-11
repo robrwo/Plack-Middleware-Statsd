@@ -333,6 +333,13 @@ See L<Plack::Middleware::XSendfile> for more information.
 
 The worker PID is added to the set.
 
+Note that this is set after the request is processed.  This means that
+while the set size can be used to indicate the number of active
+workers, if the workers are busy (i.e. longer request processing
+times), then this will show a lower number.
+
+This was added in v0.3.10.
+
 =item C<psgix.harakiri>
 
 This counter is incremented when the harakiri flag is set.

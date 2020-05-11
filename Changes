@@ -1,6 +1,9 @@
 Revision history for Plack-Middleware-Statsd
 
 {{$NEXT}}
+  [Documentation]
+  - Updated section on the psgi.worker.pid metric.
+
   [Other]
   - Stop removing strict and warnings from prerequisites.
 
