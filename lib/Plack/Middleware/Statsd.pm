@@ -46,8 +46,8 @@ sub prepare_app {
                 unless defined $method;
             $self->$attr(
                 sub {
-                    my ($env, @args) = @_;
                     return unless defined $method;
+                    my ($env, @args) = @_;
                     try {
                         $client->$method( grep { defined $_ } @args );
                     }
@@ -82,9 +82,9 @@ sub call {
     return Plack::Util::response_cb(
         $res,
         sub {
-            my $res = shift;
-
             return unless $client;
+
+            my $res = shift;
 
             my $rate = $self->sample_rate;
 
