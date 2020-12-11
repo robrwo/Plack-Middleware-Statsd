@@ -84,7 +84,7 @@ sub call {
         sub {
             return unless $client;
 
-            my $res = shift;
+            my ($res) = @_;
 
             my $rate = $self->sample_rate;
 
