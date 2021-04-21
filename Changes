@@ -1,6 +1,8 @@
 Revision history for Plack-Middleware-Statsd
 
 {{$NEXT}}
+
+v0.4.6    2021-04-21 16:51:41+01:00 Europe/London
   [Enhancements]
   - Check if internal methods are unused before fetching arguments.
 
