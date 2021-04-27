@@ -134,7 +134,7 @@ sub call {
 
             if ( $h->exists('Content-Length') ) {
                 my $length = $h->get('Content-Length') || 0;
-                $histogram->( $env, 'psgi.response.content-length', $length );
+                $histogram->( $env, 'psgi.response.content-length', $length, $rate );
             }
 
             if ( my $type = $h->get('Content-Type') ) {
