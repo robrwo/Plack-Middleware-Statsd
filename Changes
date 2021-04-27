@@ -1,6 +1,8 @@
 Revision history for Plack-Middleware-Statsd
 
 {{$NEXT}}
+
+v0.4.7    2021-04-27 16:47:35+01:00 Europe/London
   [Bug Fixes]
   - Use sample_rate for content length metrics.
 
