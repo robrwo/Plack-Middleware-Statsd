@@ -2,7 +2,7 @@ Revision history for Plack-Middleware-Statsd
 
 {{$NEXT}}
   [Bug Fixes]
-  - Use sample_rate to content length metrics.
+  - Use sample_rate for content length metrics.
 
 v0.4.6    2021-04-21 16:51:41+01:00 Europe/London
   [Enhancements]
