@@ -77,7 +77,19 @@ sub call {
     my $client = ( $env->{'psgix.monitor.statsd'} //= $self->client );
 
     my $start = [Time::HiRes::gettimeofday];
-    my $res   = $self->app->($env);
+    my $res = try {
+        $self->app->($env);
+    }
+    catch {
+        if ( my $logger = $env->{'psgix.logger'} ) {
+            $logger->( { level => 'error', message => $_ } );
+        }
+        else {
+            $env->{'psgi.errors'}->print($_);
+        }
+        my $message = 'Internal Error';
+        [ 500, [ 'Content-Type' => 'text/plain', 'Content-Length' => length($message) ], [$message] ];
+    };
 
     return Plack::Util::response_cb(
         $res,
