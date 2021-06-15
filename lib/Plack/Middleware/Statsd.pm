@@ -22,7 +22,7 @@ use Ref::Util qw/ is_coderef /;
 use Time::HiRes;
 use Try::Tiny;
 
-our $VERSION = 'v0.5.0';
+our $VERSION = 'v0.5.1';
 
 # Note: You may be able to omit the client if there is a client
 # defined in the environment hash at C<psgix.monitor.statsd>, and the
