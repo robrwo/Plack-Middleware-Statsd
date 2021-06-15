@@ -25,7 +25,7 @@ my $handler = builder {
         };
     };
 
-    enable "Statsd", client  => $stats;
+    enable "Statsd", client  => $stats, catch_errors => 1;
     enable "ContentLength";
     enable "Head";
 
