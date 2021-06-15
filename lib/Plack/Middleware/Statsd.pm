@@ -336,6 +336,8 @@ and returns a valid response, for example.
 This is disable by default, which means that no metrics will be logged
 if there is a fatal error.
 
+Added in v0.5.0.
+
 =head1 METRICS
 
 The following metrics are logged:
