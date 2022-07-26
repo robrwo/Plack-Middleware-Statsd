@@ -7,6 +7,10 @@ Revision history for Plack-Middleware-Statsd
   [Enhancements]
   - Use Feature::Compat::Try instead of Try::Tiny to catch errors.
 
+  [Documentation]
+  - Bump copyright year.
+
+
 v0.5.1    2021-07-03 14:08:05+01:00 Europe/London
   [Documentation]
   - Documented the version required for the catch_errors attribute.
