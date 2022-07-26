@@ -10,6 +10,7 @@ Revision history for Plack-Middleware-Statsd
   [Documentation]
   - Bump copyright year.
 
+  - Fixed encoding of links in README.
 
 v0.5.1    2021-07-03 14:08:05+01:00 Europe/London
   [Documentation]
