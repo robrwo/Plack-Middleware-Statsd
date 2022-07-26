@@ -1,6 +1,11 @@
 Revision history for Plack-Middleware-Statsd
 
 {{$NEXT}}
+  [Incompatable Changes]
+  - Minimum Perl version is v5.14.
+
+  [Enhancements]
+  - Use Feature::Compat::Try instead of Try::Tiny to catch errors.
 
 v0.5.1    2021-07-03 14:08:05+01:00 Europe/London
   [Documentation]

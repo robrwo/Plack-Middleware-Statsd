@@ -247,7 +247,7 @@ allow you to monitor process size information.  In your `app.psgi`:
 
 ```perl
 use Net::Statsd::Tiny;
-use Try::Tiny;
+use Feature::Compat::Try;
 
 my $statsd = Net::Statsd::Tiny->new( ... );
 
@@ -268,8 +268,8 @@ builder {
             $statsd->timing_ms('psgi.proc.shared', $shared);
             $statsd->timing_ms('psgi.proc.unshared', $unshared);
         }
-        catch {
-            warn $_;
+        catch($e) {
+            warn $e;
         };
     };
 ```
