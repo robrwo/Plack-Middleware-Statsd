@@ -12,6 +12,9 @@ Revision history for Plack-Middleware-Statsd
 
   - Fixed encoding of links in README.
 
+  [Toolchain]
+  - Updated MANIFEST.SKIP.
+
 v0.5.1    2021-07-03 14:08:05+01:00 Europe/London
   [Documentation]
   - Documented the version required for the catch_errors attribute.
