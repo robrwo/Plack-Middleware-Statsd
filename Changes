@@ -1,6 +1,8 @@
 Revision history for Plack-Middleware-Statsd
 
 {{$NEXT}}
+  [Other]
+  - Signed distribution.
 
 v0.6.0    2022-07-26 16:50:26+01:00 Europe/London
   [Incompatable Changes]
