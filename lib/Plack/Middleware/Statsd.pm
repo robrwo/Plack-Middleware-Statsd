@@ -142,10 +142,7 @@ sub call {
                 $increment->( $env, 'psgi.request.method.' . $method, $rate );
             }
 
-            if ( my $type = $env->{CONTENT_TYPE} ) {
-                $type =~ s#\.#-#g;
-                $type =~ s#/#.#g;
-                $type =~ s/;.*$//;
+            if ( my $type = _mime_type_to_metric( $env->{CONTENT_TYPE} ) ) {
                 $increment->( $env, 'psgi.request.content-type.' . $type, $rate );
             }
 
@@ -170,10 +167,7 @@ sub call {
                 $histogram->( $env, 'psgi.response.content-length', $length, $rate );
             }
 
-            if ( my $type = $h->get('Content-Type') ) {
-                $type =~ s#\.#-#g;
-                $type =~ s#/#.#g;
-                $type =~ s/;.*$//;
+            if ( my $type = _mime_type_to_metric( $h->get('Content-Type') ) ) {
                 $increment->( $env, 'psgi.response.content-type.' . $type, $rate );
             }
 
@@ -194,6 +188,11 @@ sub call {
         }
     );
 
+}
+
+sub _mime_type_to_metric {
+    my $type = $_[0] or return;
+    return $type =~ s#\.#-#gr =~ s#/#.#gr =~ s/;.*$//r;
 }
 
 =head1 SYNOPSIS
