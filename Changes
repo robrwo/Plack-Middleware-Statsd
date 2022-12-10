@@ -4,6 +4,9 @@ Revision history for Plack-Middleware-Statsd
   [Enhancements]
   - Simplified code for tracking Content-Type headers.
 
+  [Other]
+  - Removed redundant import.
+
 v0.6.1    2022-09-02 16:05:17+01:00 Europe/London
   [Other]
   - Signed distribution.

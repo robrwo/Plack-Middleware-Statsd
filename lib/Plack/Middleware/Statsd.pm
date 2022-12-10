@@ -8,8 +8,6 @@ package Plack::Middleware::Statsd;
 # RECOMMEND PREREQ: Ref::Util::XS
 
 use v5.14;
-
-use strict;
 use warnings;
 
 use parent qw/ Plack::Middleware /;

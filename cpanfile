@@ -8,7 +8,6 @@ requires "Ref::Util" => "0";
 requires "Time::HiRes" => "0";
 requires "parent" => "0";
 requires "perl" => "v5.14.0";
-requires "strict" => "0";
 requires "warnings" => "0";
 recommends "HTTP::Status" => "6.16";
 recommends "List::Util::XS" => "0";
@@ -31,6 +30,7 @@ on 'test' => sub {
   requires "Test::Most" => "0";
   requires "Test::Warnings" => "0";
   requires "lib" => "0";
+  requires "strict" => "0";
 };
 
 on 'test' => sub {
