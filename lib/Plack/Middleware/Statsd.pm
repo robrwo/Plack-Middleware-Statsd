@@ -480,7 +480,7 @@ Since v0.6.0, the this module requires Perl v5.14 or later.
 
 If you need this module on Perl v5.10, please use one of the v0.5.x
 versions of this module.  Significant bug or security fixes may be
-backported,
+backported to those versions.
 
 =head1 SEE ALSO
 
