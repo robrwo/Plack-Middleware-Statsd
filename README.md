@@ -281,6 +281,14 @@ builder {
 If your application is returning a status code that is not handled by
 [HTTP::Status](https://metacpan.org/pod/HTTP%3A%3AStatus), then the metrics may not be logged for that reponse.
 
+# SUPPORT FOR OLDER PERL VERSIONS
+
+Since v0.6.0, the this module requires Perl v5.14 or later.
+
+If you need this module on Perl v5.10, please use one of the v0.5.x
+versions of this module.  Significant bug or security fixes may be
+backported,
+
 # SEE ALSO
 
 [Net::Statsd::Client](https://metacpan.org/pod/Net%3A%3AStatsd%3A%3AClient)
