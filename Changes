@@ -4,6 +4,8 @@ Revision history for Plack-Middleware-Statsd
   [Documentation]
   - Document support for older Perl versions.
 
+  - Bump copyright year.
+
 v0.5.1    2021-07-03 14:08:05+01:00 Europe/London
   [Documentation]
   - Documented the version required for the catch_errors attribute.
