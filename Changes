@@ -7,6 +7,8 @@ Revision history for Plack-Middleware-Statsd
   [Documentation]
   - Document support for older Perl versions.
 
+  - Fixed typo.
+
   [Other]
   - Removed redundant import.
 
