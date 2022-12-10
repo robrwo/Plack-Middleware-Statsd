@@ -9,6 +9,9 @@ Revision history for Plack-Middleware-Statsd
 
   - Added GitHub Actions to run tests.
 
+  [Tests]
+  - Added missing author prereq for Test::Vars.
+
 v0.6.1    2022-09-02 16:05:17+01:00 Europe/London
   [Other]
   - Signed distribution.
