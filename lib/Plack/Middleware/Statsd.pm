@@ -333,7 +333,7 @@ and returns a valid response, for example.
   enable "Statsd",
      catch_errors => \&handle_errors;
 
-This is disable by default, which means that no metrics will be logged
+This is disabled by default, which means that no metrics will be logged
 if there is a fatal error.
 
 Added in v0.5.0.
