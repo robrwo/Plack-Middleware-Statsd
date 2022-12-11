@@ -5,7 +5,7 @@ Revision history for Plack-Middleware-Statsd
   - Simplified code for tracking Content-Type headers.
 
   [Documentation]
-  - Document support for older Perl versions.
+  - Documented support for older Perl versions.
 
   - Fixed typo.
 
