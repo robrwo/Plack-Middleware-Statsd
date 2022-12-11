@@ -474,6 +474,12 @@ allow you to monitor process size information.  In your F<app.psgi>:
 If your application is returning a status code that is not handled by
 L<HTTP::Status>, then the metrics may not be logged for that reponse.
 
+=head2 psgix.informational
+
+This does not add a wrapper around the C<psgix.informational>
+callback.  If you are making use of it in your code, then you will
+need to add metrics logging yourself.
+
 =head1 SUPPORT FOR OLDER PERL VERSIONS
 
 Since v0.6.0, the this module requires Perl v5.14 or later.

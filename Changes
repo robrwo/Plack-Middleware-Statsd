@@ -9,6 +9,8 @@ Revision history for Plack-Middleware-Statsd
 
   - Fixed typo.
 
+  - Added note about psgix.informational callback.
+
   [Other]
   - Removed redundant import.
 
