@@ -20,7 +20,7 @@ use Plack::Util::Accessor
 use Ref::Util qw/ is_coderef /;
 use Time::HiRes;
 
-our $VERSION = 'v0.6.2';
+our $VERSION = 'v0.6.3';
 
 # Note: You may be able to omit the client if there is a client
 # defined in the environment hash at C<psgix.monitor.statsd>, and the
