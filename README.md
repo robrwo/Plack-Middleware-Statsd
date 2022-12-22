@@ -278,6 +278,8 @@ builder {
 
 ## Non-standard HTTP status codes
 
+## Unknown Status Codes
+
 If your application is returning a status code that is not handled by
 [HTTP::Status](https://metacpan.org/pod/HTTP%3A%3AStatus), then the metrics may not be logged for that reponse.
 

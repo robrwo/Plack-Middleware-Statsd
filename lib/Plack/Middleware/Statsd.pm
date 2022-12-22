@@ -471,6 +471,8 @@ allow you to monitor process size information.  In your F<app.psgi>:
 
 =head2 Non-standard HTTP status codes
 
+=head2 Unknown Status Codes
+
 If your application is returning a status code that is not handled by
 L<HTTP::Status>, then the metrics may not be logged for that reponse.
 
