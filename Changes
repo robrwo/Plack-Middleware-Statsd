@@ -4,6 +4,8 @@ Revision history for Plack-Middleware-Statsd
   [Documentation]
   - Reformated KNOWN ISSUES section.
 
+  - Bumped copyright year.
+
 v0.6.2    2022-12-11 16:07:04+00:00 Europe/London
   [Enhancements]
   - Simplified code for tracking Content-Type headers.
