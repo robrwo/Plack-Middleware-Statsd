@@ -12,13 +12,13 @@ use warnings;
 
 use parent qw/ Plack::Middleware /;
 
-use Feature::Compat::Try;
 use List::Util qw/ first /;
 use Plack::Util;
 use Plack::Util::Accessor
     qw/ client sample_rate histogram increment set_add catch_errors /;
 use Ref::Util qw/ is_coderef /;
 use Time::HiRes;
+use Try::Tiny;
 
 our $VERSION = 'v0.6.3';
 
@@ -49,7 +49,8 @@ sub prepare_app {
                     try {
                         $client->$method( grep { defined $_ } @args );
                     }
-                    catch($e) {
+                    catch {
+                        my ($e) = $_;
                         if (my $logger = $env->{'psgix.logger'}) {
                             $logger->( { message => $e, level => 'error' } );
                         }
@@ -102,8 +103,8 @@ sub call {
         try {
             $res = $self->app->($env);
         }
-        catch($e) {
-            $res = $catch->( $env, $e );
+        catch {
+            $res = $catch->( $env, $_ );
         }
     }
     else {
@@ -441,7 +442,7 @@ L<Plack::Middleware::SizeLimit> version 0.11 supports callbacks that
 allow you to monitor process size information.  In your F<app.psgi>:
 
   use Net::Statsd::Tiny;
-  use Feature::Compat::Try;
+  use Try::Tiny;
 
   my $statsd = Net::Statsd::Tiny->new( ... );
 
@@ -462,8 +463,8 @@ allow you to monitor process size information.  In your F<app.psgi>:
               $statsd->timing_ms('psgi.proc.shared', $shared);
               $statsd->timing_ms('psgi.proc.unshared', $unshared);
           }
-          catch($e) {
-              warn $e;
+          catch {
+              warn $_;
           };
       };
 

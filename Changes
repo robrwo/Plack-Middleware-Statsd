@@ -1,6 +1,9 @@
 Revision history for Plack-Middleware-Statsd
 
 {{$NEXT}}
+  [Enhancements]
+  - Revert to using Try::Tiny instead of Feature::Compat::Try, since the former is already used by Plack.
+
   [Documentation]
   - Reformated KNOWN ISSUES section.
 
