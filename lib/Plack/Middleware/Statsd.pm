@@ -7,7 +7,7 @@ package Plack::Middleware::Statsd;
 # RECOMMEND PREREQ: List::Util::XS
 # RECOMMEND PREREQ: Ref::Util::XS
 
-use v5.14;
+use v5.20;
 use warnings;
 
 use parent qw/ Plack::Middleware /;
@@ -20,6 +20,8 @@ use Ref::Util qw/ is_coderef /;
 use Time::HiRes;
 use Try::Tiny;
 
+use experimental qw/ postderef signatures /;
+
 our $VERSION = 'v0.6.4';
 
 # Note: You may be able to omit the client if there is a client
@@ -27,8 +29,7 @@ our $VERSION = 'v0.6.4';
 # L</histogram>, L</increment> and L</attributes> are set.  But that
 # is a strange case and unsupported.
 
-sub prepare_app {
-    my ($self) = @_;
+sub prepare_app($self) {
 
     if ( my $client = $self->client ) {
         foreach my $init (
@@ -37,15 +38,14 @@ sub prepare_app {
             [qw/ set_add   set_add   /],
           )
         {
-            my ( $attr, @methods ) = @$init;
+            my ( $attr, @methods ) = $init->@*;
             next if defined $self->$attr;
             my $method = first { $client->can($_) } @methods;
             warn "No $attr method found for client " . ref($client)
                 unless defined $method;
             $self->$attr(
-                sub {
+                sub($env, @args) {
                     return unless defined $method;
-                    my ($env, @args) = @_;
                     try {
                         $client->$method( grep { defined $_ } @args );
                     }
@@ -73,8 +73,7 @@ sub prepare_app {
         unless ( is_coderef($catch) ) {
 
             $self->catch_errors(
-                sub {
-                    my ( $env, $error ) = @_;
+                sub( $env, $error ) {
                     if ( my $logger = $env->{'psgix.logger'} ) {
                         $logger->( { level => 'error', message => $error } );
                     }
@@ -91,8 +90,7 @@ sub prepare_app {
     }
 }
 
-sub call {
-    my ( $self, $env ) = @_;
+sub call ( $self, $env ) {
 
     my $client = ( $env->{'psgix.monitor.statsd'} //= $self->client );
 
@@ -113,10 +111,8 @@ sub call {
 
     return Plack::Util::response_cb(
         $res,
-        sub {
+        sub($res) {
             return unless $client;
-
-            my ($res) = @_;
 
             my $rate = $self->sample_rate;
 
@@ -189,8 +185,8 @@ sub call {
 
 }
 
-sub _mime_type_to_metric {
-    my $type = $_[0] or return;
+sub _mime_type_to_metric( $type = undef ) {
+    return unless $type;
     return $type =~ s#\.#-#gr =~ s#/#.#gr =~ s/;.*$//r;
 }
 

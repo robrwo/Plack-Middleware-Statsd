@@ -1,6 +1,11 @@
 Revision history for Plack-Middleware-Statsd
 
 {{$NEXT}}
+  [Enhancements]
+  - Code was adapted to use newer syntax features.
+
+  [Incompatible Changes]
+  - Bumped minimum version of Perl to v5.20.
 
 v0.6.3    2023-06-15 19:45:18+01:00 Europe/London
   [Enhancements]
