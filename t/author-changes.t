@@ -10,7 +10,7 @@ BEGIN {
     }
 }
 
-use Test2::V0;
+use Test::More;
 
 eval "use Test::CPAN::Changes";
 
