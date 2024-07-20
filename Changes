@@ -1,6 +1,8 @@
 Revision history for Plack-Middleware-Statsd
 
 {{$NEXT}}
+
+v0.7.1    2024-07-20 12:52:04+01:00 Europe/London
   [Documentation]
   - Updated copyright year,
 
