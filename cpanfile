@@ -15,10 +15,15 @@ recommends "List::Util::XS" => "0";
 recommends "Net::Statsd::Tiny" => "v0.3.0";
 recommends "Ref::Util::XS" => "0";
 
+on 'build' => sub {
+  requires "ExtUtils::MakeMaker" => "7.22";
+  requires "Module::Metadata" => "1.000015";
+};
+
 on 'test' => sub {
   requires "File::Spec" => "0";
   requires "HTTP::Request::Common" => "0";
-  requires "Module::Metadata" => "0";
+  requires "Module::Metadata" => "1.000015";
   requires "Plack::Builder" => "0";
   requires "Plack::MIME" => "0";
   requires "Plack::Middleware::ContentLength" => "0";
