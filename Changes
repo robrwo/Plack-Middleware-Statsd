@@ -7,6 +7,8 @@ Revision history for Plack-Middleware-Statsd
   [Documentation]
   - Added a security policy.
 
+  - Updated copyright year.
+
   [Tests]
   - Added author tests for CVEs in prereqs.
 
