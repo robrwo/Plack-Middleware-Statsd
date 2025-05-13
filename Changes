@@ -9,6 +9,8 @@ Revision history for Plack-Middleware-Statsd
   [Documentation]
   - Added a security policy.
 
+  - Removed redundant heading.
+
   - Updated copyright year.
 
 v0.7.1    2024-07-20 12:52:04+01:00 Europe/London
