@@ -188,7 +188,7 @@ sub call ( $self, $env ) {
 
 sub _mime_type_to_metric( $type = undef ) {
     return unless $type;
-    return unless $type =~ m#^\w+/(\w+[\-\+])*\w+( *;\w+=\w+)?#an;
+    return unless $type =~ m#^\w+/(?:\w+[\-\+])*\w+(?: *;\w+=\w+)?#a;
     return $type =~ s#\.#-#gr =~ s#/#.#gr =~ s/;.*$//r;
 }
 
