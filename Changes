@@ -4,6 +4,8 @@ Revision history for Plack-Middleware-Statsd
   [Enhancements]
   - Stats for request methods are only counted for ASCII words, anything else is counted as "other".
 
+  - Stats for content types are only counted for well-formed types.
+
   [Documentation]
   - Added a security policy.
 
