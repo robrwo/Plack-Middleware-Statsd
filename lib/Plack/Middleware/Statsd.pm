@@ -134,6 +134,7 @@ sub call ( $self, $env ) {
             }
 
             if ( my $method = $env->{REQUEST_METHOD} ) {
+                $method = "other" unless $method =~ /^\w+$/a;
                 $increment->( $env, 'psgi.request.method.' . $method, $rate );
             }
 
@@ -340,6 +341,8 @@ The following metrics are logged:
 =item C<psgi.request.method.$METHOD>
 
 This increments a counter for the request method.
+
+If the request method is anything other than an ASCII word, then it will be counted as "other".
 
 =item C<psgi.request.remote_addr>
 

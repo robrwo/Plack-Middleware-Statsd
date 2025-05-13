@@ -22,6 +22,7 @@ on 'build' => sub {
 
 on 'test' => sub {
   requires "File::Spec" => "0";
+  requires "HTTP::Request" => "0";
   requires "HTTP::Request::Common" => "0";
   requires "Module::Metadata" => "1.000015";
   requires "Plack::Builder" => "0";
@@ -38,6 +39,7 @@ on 'test' => sub {
   requires "Test::Warnings" => "0";
   requires "lib" => "0";
   requires "strict" => "0";
+  requires "utf8" => "0";
 };
 
 on 'test' => sub {

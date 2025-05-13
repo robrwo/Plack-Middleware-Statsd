@@ -1,6 +1,9 @@
 Revision history for Plack-Middleware-Statsd
 
 {{$NEXT}}
+  [Enhancements]
+  - Stats for request methods are only counted for ASCII words, anything else is counted as "other".
+
   [Documentation]
   - Added a security policy.
 

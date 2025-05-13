@@ -149,6 +149,8 @@ The following metrics are logged:
 
     This increments a counter for the request method.
 
+    If the request method is anything other than an ASCII word, then it will be counted as "other".
+
 - `psgi.request.remote_addr`
 
     The remote address is added to the set.
