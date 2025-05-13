@@ -9,6 +9,8 @@ Revision history for Plack-Middleware-Statsd
   [Documentation]
   - Added a security policy.
 
+  - Added a How to Contribute document
+
   - Removed redundant heading.
 
   - Updated copyright year.

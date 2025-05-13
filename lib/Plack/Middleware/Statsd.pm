@@ -502,6 +502,8 @@ Library L<https://www.sciencephoto.com>.
 
 =head1 append:BUGS
 
+Please see F<CONTRIBUTING.md> for more information on how to contribute to this project.
+
 =head2 Reporting Security Vulnerabilities
 
 Security issues should not be reported on the bugtracker website. Please see F<SECURITY.md> for instructions how to

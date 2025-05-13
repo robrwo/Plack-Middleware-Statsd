@@ -317,6 +317,8 @@ When submitting a bug or request, please include a test-file or a
 patch to an existing test-file that illustrates the bug or desired
 feature.
 
+Please see `CONTRIBUTING.md` for more information on how to contribute to this project.
+
 ## Reporting Security Vulnerabilities
 
 Security issues should not be reported on the bugtracker website. Please see `SECURITY.md` for instructions how to
