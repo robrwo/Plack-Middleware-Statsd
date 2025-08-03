@@ -500,14 +500,23 @@ L<PSGI>
 The initial development of this module was sponsored by Science Photo
 Library L<https://www.sciencephoto.com>.
 
-=head1 append:BUGS
+=head1 prepend:SUPPORT
+
+Only the latest version of this module will be supported.
+
+This module requires Perl v5.20 or later.
+Future releases may only support Perl versions released in the last ten (10) years.
+
+=head2 Reporting Bugs and Submitting Feature Requests
+
+=head1 append:SUPPORT
+
+If the bug you are reporting has security implications which make it inappropriate to send to a public issue tracker,
+then see F<SECURITY.md> for instructions how to report security vulnerabilities.
+
+=head1 append:SOURCE
 
 Please see F<CONTRIBUTING.md> for more information on how to contribute to this project.
-
-=head2 Reporting Security Vulnerabilities
-
-Security issues should not be reported on the bugtracker website. Please see F<SECURITY.md> for instructions how to
-report security vulnerabilities
 
 =cut
 

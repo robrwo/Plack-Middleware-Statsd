@@ -1,6 +1,9 @@
 Revision history for Plack-Middleware-Statsd
 
 {{$NEXT}}
+  [Documentation]
+  - Added SUPPORT section and merged BUGS into it.
+
   [Tests]
   - Added more author tests.
 

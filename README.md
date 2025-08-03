@@ -308,7 +308,16 @@ Future releases may only support Perl versions released in the last ten years.
 The development version is on github at [https://github.com/robrwo/Plack-Middleware-Statsd](https://github.com/robrwo/Plack-Middleware-Statsd)
 and may be cloned from [git://github.com/robrwo/Plack-Middleware-Statsd.git](git://github.com/robrwo/Plack-Middleware-Statsd.git)
 
-# BUGS
+Please see `CONTRIBUTING.md` for more information on how to contribute to this project.
+
+# SUPPORT
+
+Only the latest version of this module will be supported.
+
+This module requires Perl v5.20 or later.
+Future releases may only support Perl versions released in the last ten (10) years.
+
+## Reporting Bugs and Submitting Feature Requests
 
 Please report any bugs or feature requests on the bugtracker website
 [https://github.com/robrwo/Plack-Middleware-Statsd/issues](https://github.com/robrwo/Plack-Middleware-Statsd/issues)
@@ -317,12 +326,8 @@ When submitting a bug or request, please include a test-file or a
 patch to an existing test-file that illustrates the bug or desired
 feature.
 
-Please see `CONTRIBUTING.md` for more information on how to contribute to this project.
-
-## Reporting Security Vulnerabilities
-
-Security issues should not be reported on the bugtracker website. Please see `SECURITY.md` for instructions how to
-report security vulnerabilities
+If the bug you are reporting has security implications which make it inappropriate to send to a public issue tracker,
+then see `SECURITY.md` for instructions how to report security vulnerabilities.
 
 # AUTHOR
 
