@@ -59,6 +59,7 @@ on 'develop' => sub {
   requires "Test::DistManifest" => "0";
   requires "Test::EOF" => "0";
   requires "Test::EOL" => "0";
+  requires "Test::Fixme" => "0";
   requires "Test::Kwalitee" => "1.21";
   requires "Test::MinimumVersion" => "0";
   requires "Test::MixedScripts" => "v0.3.0";
@@ -71,4 +72,5 @@ on 'develop' => sub {
   requires "Test::Portability::Files" => "0";
   requires "Test::TrailingSpace" => "0.0203";
   requires "Test::Vars" => "0.015";
+  requires "strict" => "0";
 };

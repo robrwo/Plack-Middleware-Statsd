@@ -47,6 +47,7 @@ Changes for version v0.8.1 (2025-08-06)
     - Removed the INSTALL file.
 - Tests
     - Added more author tests.
+    - Moved author tests into the xt directory.
 - Toolchain
     - Ensure local-lib is not included in distribution.
 

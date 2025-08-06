@@ -11,6 +11,8 @@ Revision history for Plack-Middleware-Statsd
   [Tests]
   - Added more author tests.
 
+  - Moved author tests into the xt directory.
+
   [Toolchain]
   - Ensure local-lib is not included in distribution.
 
