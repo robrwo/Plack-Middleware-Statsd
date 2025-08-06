@@ -16,6 +16,8 @@ Revision history for Plack-Middleware-Statsd
   [Toolchain]
   - Ensure local-lib is not included in distribution.
 
+  - Update GutHub workflow.
+
 v0.8.0    2025-05-13 13:07:16+01:00 Europe/London
   [Security]
   - Stats for request methods are only counted for ASCII words, anything else is counted as "other".

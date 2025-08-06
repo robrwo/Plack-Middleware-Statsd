@@ -50,6 +50,7 @@ Changes for version v0.8.1 (2025-08-06)
     - Moved author tests into the xt directory.
 - Toolchain
     - Ensure local-lib is not included in distribution.
+    - Update GutHub workflow.
 
 See the `Changes` file for more details.
 
