@@ -39,7 +39,7 @@ to a statsd server.
 
 # RECENT CHANGES
 
-Changes for version v0.8.1 (2025-08-05)
+Changes for version v0.8.1 (2025-08-06)
 
 - Documentation
     - Added SUPPORT section and merged BUGS into it.
@@ -47,6 +47,8 @@ Changes for version v0.8.1 (2025-08-05)
     - Removed the INSTALL file.
 - Tests
     - Added more author tests.
+- Toolchain
+    - Ensure local-lib is not included in distribution.
 
 See the `Changes` file for more details.
 
