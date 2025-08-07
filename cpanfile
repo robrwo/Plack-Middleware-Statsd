@@ -36,7 +36,6 @@ on 'test' => sub {
   requires "Test::MockObject" => "0";
   requires "Test::More" => "0";
   requires "Test::Most" => "0";
-  requires "Test::Vars" => "0.015";
   requires "Test::Warnings" => "0";
   requires "lib" => "0";
   requires "strict" => "0";
