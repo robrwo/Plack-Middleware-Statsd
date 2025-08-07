@@ -68,7 +68,7 @@ jobs:
       - run: perl -V
       - name: Install Dependencies
         run: cpm install -g --show-build-log-on-failure
-      - run: prove -lr
+      - run: prove -lr t xt
 
   dzil-build-and-test:
      name: Dist::Zilla build and test
