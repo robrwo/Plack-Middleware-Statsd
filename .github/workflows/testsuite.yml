@@ -74,13 +74,7 @@ jobs:
       - run: prove -lr t xt
 
   dzil-build-and-test:
-
-     steps:
-
-        - name: Dist::Zilla build and test
-          uses: rjbs/dzil-actions/.github/workflows/dzil-matrix.yaml@main
-          with:
-            install-dzil-from-cpan: true
-
-        - run: |
-            JUNIT_TEST_FILE="/tmp/test-output.xml" ALLOW_PASSING_TODOS=1 TEST2_UUID_NO_WARN=1 yath test xt --renderer=Formatter --renderer=JUnit -b
+     name: Dist::Zilla build and test
+     uses: rjbs/dzil-actions/.github/workflows/dzil-matrix.yaml@main
+     with:
+       install-dzil-from-cpan: true
