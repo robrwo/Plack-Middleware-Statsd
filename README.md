@@ -39,7 +39,7 @@ to a statsd server.
 
 # RECENT CHANGES
 
-Changes for version v0.8.1 (2025-08-06)
+Changes for version v0.8.1 (2025-08-07)
 
 - Documentation
     - Added SUPPORT section and merged BUGS into it.
@@ -51,6 +51,7 @@ Changes for version v0.8.1 (2025-08-06)
 - Toolchain
     - Ensure local-lib is not included in distribution.
     - Update GutHub workflow.
+    - Do not rebuild MANIFEST.SKIP.
 
 See the `Changes` file for more details.
 
