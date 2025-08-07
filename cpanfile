@@ -31,6 +31,7 @@ on 'test' => sub {
   requires "Plack::Middleware::Head" => "0";
   requires "Plack::Test" => "0";
   requires "Sub::Util" => "1.40";
+  requires "Test2::Require::AutomatedTesting" => "0";
   requires "Test::Differences" => "0";
   requires "Test::MockObject" => "0";
   requires "Test::More" => "0";
