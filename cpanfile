@@ -55,7 +55,6 @@ on 'develop' => sub {
   requires "Pod::Markdown::Github" => "0";
   requires "Software::Security::Policy::Individual" => "0.10";
   requires "Test2::Require::AuthorTesting" => "0";
-  requires "Test2::Require::AutomatedTesting" => "0";
   requires "Test2::Tools::Basic" => "1.302200";
   requires "Test2::V0" => "0";
   requires "Test::CPAN::Changes" => "0.19";
