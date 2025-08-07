@@ -22,7 +22,7 @@ use Try::Tiny;
 
 use experimental qw/ postderef signatures /;
 
-our $VERSION = 'v0.8.1';
+our $VERSION = 'v0.8.2';
 
 # Note: You may be able to omit the client if there is a client
 # defined in the environment hash at C<psgix.monitor.statsd>, and the
