@@ -27,8 +27,7 @@ jobs:
         uses: perl-actions/install-with-cpm@v1
         with:
           cpanfile: "cpanfile"
-          args: "--with-all"
-      - run: prove -lr t xt
+      - run: prove -lr t
 
   perl-versions:
     runs-on: ubuntu-latest
@@ -68,6 +67,9 @@ jobs:
       - uses: actions/checkout@v4
       - run: perl -V
       - name: Install Dependencies
+        run: cpm install -g --show-build-log-on-failure
+      - run: prove -lr t
+      - name: Install All Dependencies
         run: cpm install -g --with-all --show-build-log-on-failure
       - run: prove -lr t xt
 
