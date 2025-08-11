@@ -1,6 +1,9 @@
 Revision history for Plack-Middleware-Statsd
 
 {{$NEXT}}
+  [Documentation]
+  - Removed redundant section.
+
   [Tests]
   - Added more author tests.
 

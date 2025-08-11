@@ -481,12 +481,6 @@ This does not add a wrapper around the C<psgix.informational>
 callback.  If you are making use of it in your code, then you will
 need to add metrics logging yourself.
 
-=head1 SUPPORT FOR OLDER PERL VERSIONS
-
-Since v0.7.0, the this module requires Perl v5.20 or later.
-
-Future releases may only support Perl versions released in the last ten years.
-
 =head1 SEE ALSO
 
 L<Net::Statsd::Client>
