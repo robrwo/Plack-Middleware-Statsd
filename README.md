@@ -39,7 +39,7 @@ to a statsd server.
 
 # RECENT CHANGES
 
-Changes for version v0.8.2 (2025-08-11)
+Changes for version v0.8.2 (2025-08-16)
 
 - Documentation
     - Removed redundant section.
