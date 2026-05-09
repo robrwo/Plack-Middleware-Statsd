@@ -581,10 +581,6 @@ Future releases may only support Perl versions released in the last ten (10) yea
 If the bug you are reporting has security implications which make it inappropriate to send to a public issue tracker,
 then see F<SECURITY.md> for instructions how to report security vulnerabilities.
 
-=head1 append:SOURCE
-
-Please see F<CONTRIBUTING.md> for more information on how to contribute to this project.
-
 =cut
 
 1;

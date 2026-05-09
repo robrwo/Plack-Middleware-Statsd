@@ -153,8 +153,6 @@ then see `SECURITY.md` for instructions how to report security vulnerabilities.
 The development version is on github at [https://github.com/robrwo/Plack-Middleware-Statsd](https://github.com/robrwo/Plack-Middleware-Statsd)
 and may be cloned from [https://github.com/robrwo/Plack-Middleware-Statsd.git](https://github.com/robrwo/Plack-Middleware-Statsd.git)
 
-Please see `CONTRIBUTING.md` for more information on how to contribute to this project.
-
 # AUTHOR
 
 Robert Rothenberg <perl@rhizomnic.com>
