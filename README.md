@@ -61,6 +61,7 @@ Changes for version v0.9.0 (2026-05-09)
     - Removed CONTRIBUTING.md due to re-evaluation about some AI-assisted issue reporting.
 - Toolchain
     - Stopped signing distributions, since Module::Signature is deprecated.
+    - Added doap.xml to the distribution.
 
 See the `Changes` file for more details.
 
