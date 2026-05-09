@@ -57,6 +57,7 @@ Changes for version v0.9.0 (2026-05-09)
 - Documentation
     - Added a SECURITY CONSIDERATIONS section.
     - Updated copyright year.
+    - Updated author email due to issues with cpan.org email forwarding.
 - Toolchain
     - Stopped signing distributions, since Module::Signature is deprecated.
 
@@ -151,7 +152,7 @@ Please see `CONTRIBUTING.md` for more information on how to contribute to this p
 
 # AUTHOR
 
-Robert Rothenberg <rrwo@cpan.org>
+Robert Rothenberg <perl@rhizomnic.com>
 
 The initial development of this module was sponsored by Science Photo
 Library [https://www.sciencephoto.com](https://www.sciencephoto.com).

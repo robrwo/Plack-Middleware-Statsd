@@ -14,6 +14,8 @@ Revision history for Plack-Middleware-Statsd
 
   - Updated copyright year.
 
+  - Updated author email due to issues with cpan.org email forwarding.
+
   [Toolchain]
   - Stopped signing distributions, since Module::Signature is deprecated.
 
