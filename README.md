@@ -58,6 +58,7 @@ Changes for version v0.9.0 (2026-05-09)
     - Added a SECURITY CONSIDERATIONS section.
     - Updated copyright year.
     - Updated author email due to issues with cpan.org email forwarding.
+    - Removed CONTRIBUTING.md due to re-evaluation about some AI-assisted issue reporting.
 - Toolchain
     - Stopped signing distributions, since Module::Signature is deprecated.
 
