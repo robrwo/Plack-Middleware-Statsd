@@ -27,6 +27,15 @@ builder {
 
     }
 
+    # Securely count the number of unique session ids
+
+    if (my $secure_set_add = $env->{'psgix.monitor.statsd_secure_set_add'}) {
+
+      my $options = $c->req->env->{'psgix.session.options'};
+      $secure_set_add->( 'myapp.sessions', $options->{id} );
+
+    }
+
   };
 
 };
@@ -39,12 +48,14 @@ to a statsd server.
 
 # RECENT CHANGES
 
-Changes for version v0.8.2 (2025-08-16)
+Changes for version v0.9.0 (2026-05-09)
 
+- Security
+    - The psgi.request.remote\_addr metric is no longer logged unless the secure\_set\_key is specified in the constructor. This is to avoid leaking personally identifiable information if the connection to the statsd client is not secure, CVE-2026-45179.
+- Enhancements
+    - Added psgix.monitor.statsd\_secure\_set\_add to the environment with a method for securely logging set data.
 - Documentation
-    - Removed redundant section.
-- Tests
-    - Added more author tests.
+    - Added a SECURITY CONSIDERATIONS section.
 
 See the `Changes` file for more details.
 
@@ -52,6 +63,7 @@ See the `Changes` file for more details.
 
 This module lists the following modules as runtime dependencies:
 
+- [Crypt::Mac::HMAC](https://metacpan.org/pod/Crypt%3A%3AMac%3A%3AHMAC) version 0.088 or later
 - [List::Util](https://metacpan.org/pod/List%3A%3AUtil)
 - [Plack::Middleware](https://metacpan.org/pod/Plack%3A%3AMiddleware)
 - [Ref::Util](https://metacpan.org/pod/Ref%3A%3AUtil)
@@ -97,6 +109,17 @@ dzil install --install-command="cpan ."
 
 For more information, see [How to install CPAN modules](https://www.cpan.org/modules/INSTALL.html).
 
+# SECURITY CONSIDERATIONS
+
+If the ["client"](#client) does not have a secure communications channel to the
+statsd server, then there is the risk that information such as IP
+addresses or session ids will be leaked.
+
+Other middleware or frameworks that make use of the `psgix.monitor.statsd` client
+should use the `psgix.monitor.statsd_secure_set_add` method when adding set data
+that contains personally identifiable information, authentication tokens or other
+sensitive data.
+
 # SUPPORT
 
 Only the latest version of this module will be supported.
@@ -119,7 +142,7 @@ then see `SECURITY.md` for instructions how to report security vulnerabilities.
 # SOURCE
 
 The development version is on github at [https://github.com/robrwo/Plack-Middleware-Statsd](https://github.com/robrwo/Plack-Middleware-Statsd)
-and may be cloned from [git://github.com/robrwo/Plack-Middleware-Statsd.git](git://github.com/robrwo/Plack-Middleware-Statsd.git)
+and may be cloned from [https://github.com/robrwo/Plack-Middleware-Statsd.git](https://github.com/robrwo/Plack-Middleware-Statsd.git)
 
 Please see `CONTRIBUTING.md` for more information on how to contribute to this project.
 
