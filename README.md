@@ -59,6 +59,9 @@ Changes for version v0.9.0 (2026-05-09)
     - Updated copyright year.
     - Updated author email due to issues with cpan.org email forwarding.
     - Removed CONTRIBUTING.md due to re-evaluation about some AI-assisted issue reporting.
+    - Fixed spelling errors.
+- Tests
+    - Added author tests for POD spelling.
 - Toolchain
     - Stopped signing distributions, since Module::Signature is deprecated.
     - Added doap.xml to the distribution.

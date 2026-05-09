@@ -207,6 +207,12 @@ sub _mime_type_to_metric( $type = undef ) {
     return $type =~ s#\.#-#gr =~ s#/#.#gr =~ s/;.*$//r;
 }
 
+=begin :prelude
+
+=for stopwords harakiri psgix statsd
+
+=end :prelude
+
 =head1 SYNOPSIS
 
   use Plack::Builder;
@@ -372,15 +378,15 @@ Note that it is more secure if a random key is chosen each time that
 the application is started.  However, there may be side effects: if
 the server forks before this middleware is initialised, then each
 worker will log secure set data uniquely, and statistics such as the
-number of unique IP addresses may be multipled by the number of
+number of unique IP addresses may be multiplied by the number of
 workers.  Even when the key is set before forking, there may be a
-brief spike in the statistics whenver the server is restarted.
+brief spike in the statistics whenever the server is restarted.
 
 Added in v0.9.0.
 
 =attr secure_set_hash
 
-This is the hashing algorithm used for encrypting secrets using an HMAC dgest.  It defaults to "SHA1".
+This is the hashing algorithm used for encrypting secrets using an HMAC digest.  It defaults to "SHA1".
 
 Added in v0.9.0.
 
@@ -529,9 +535,9 @@ allow you to monitor process size information.  In your F<app.psgi>:
 =head2 Non-standard HTTP status codes
 
 If your application is returning a status code that is not handled by
-L<HTTP::Status>, then the metrics may not be logged for that reponse.
+L<HTTP::Status>, then the metrics may not be logged for that response.
 
-=head2 psgix.informational
+=head2 C<psgix.informational>
 
 This does not add a wrapper around the C<psgix.informational>
 callback.  If you are making use of it in your code, then you will

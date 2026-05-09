@@ -18,6 +18,11 @@ Revision history for Plack-Middleware-Statsd
 
   - Removed CONTRIBUTING.md due to re-evaluation about some AI-assisted issue reporting.
 
+  - Fixed spelling errors.
+
+  [Tests]
+  - Added author tests for POD spelling.
+
   [Toolchain]
   - Stopped signing distributions, since Module::Signature is deprecated.
 
