@@ -56,6 +56,7 @@ Changes for version v0.9.0 (2026-05-09)
     - Added psgix.monitor.statsd\_secure\_set\_add to the environment with a method for securely logging set data.
 - Documentation
     - Added a SECURITY CONSIDERATIONS section.
+    - Updated copyright year.
 - Toolchain
     - Stopped signing distributions, since Module::Signature is deprecated.
 
@@ -157,7 +158,7 @@ Library [https://www.sciencephoto.com](https://www.sciencephoto.com).
 
 # COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2018-2025 by Robert Rothenberg.
+This software is Copyright (c) 2018-2026 by Robert Rothenberg.
 
 This is free software, licensed under:
 
