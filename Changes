@@ -12,6 +12,9 @@ Revision history for Plack-Middleware-Statsd
   [Documentation]
   - Added a SECURITY CONSIDERATIONS section.
 
+  [Toolchain]
+  - Stopped signing distributions, since Module::Signature is deprecated.
+
 v0.8.2    2025-08-16 12:11:31+01:00 Europe/London
   [Documentation]
   - Removed redundant section.
