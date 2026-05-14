@@ -51,7 +51,7 @@ to a statsd server.
 Changes for version v0.9.1 (2026-05-14)
 
 - Enhancements
-    - Crypt::Mac::HMAC is only loaded if secure\_set\_key is specified.
+    - Crypt::Mac::HMAC is only loaded if secure\_set\_key is specified. It is now recommended instead of required.xs
 - Security
     - The minimum version of Crypt::Mac::HMAC was bumped.
 
@@ -61,7 +61,6 @@ See the `Changes` file for more details.
 
 This module lists the following modules as runtime dependencies:
 
-- [Crypt::Mac::HMAC](https://metacpan.org/pod/Crypt%3A%3AMac%3A%3AHMAC) version 0.089 or later
 - [List::Util](https://metacpan.org/pod/List%3A%3AUtil)
 - [Module::Load](https://metacpan.org/pod/Module%3A%3ALoad)
 - [Plack::Middleware](https://metacpan.org/pod/Plack%3A%3AMiddleware)

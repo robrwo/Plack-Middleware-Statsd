@@ -6,6 +6,7 @@ package Plack::Middleware::Statsd;
 # RECOMMEND PREREQ: HTTP::Status 6.16
 # RECOMMEND PREREQ: List::Util::XS
 # RECOMMEND PREREQ: Ref::Util::XS
+# RECOMMEND PREREQ: Crypt::Mac::HMAC 0.089
 
 use v5.20;
 use warnings;
@@ -384,6 +385,8 @@ workers.  Even when the key is set before forking, there may be a
 brief spike in the statistics whenever the server is restarted.
 
 Added in v0.9.0.
+
+This feature requires L<Crypt::Mac::HMAC>.
 
 =attr secure_set_hash
 
