@@ -12,8 +12,8 @@ use warnings;
 
 use parent qw/ Plack::Middleware /;
 
-use Crypt::Mac::HMAC 0.088 qw/ hmac_b64u /;
 use List::Util qw/ first /;
+use Module::Load;
 use Plack::Util;
 use Plack::Util::Accessor
     qw/ client sample_rate histogram increment set_add secure_set_add secure_set_key secure_set_hash catch_errors /;
@@ -66,9 +66,10 @@ sub prepare_app($self) {
 
         my $hash = $self->secure_set_hash || "SHA1";
         if ( my $key = $self->secure_set_key ) {
+            load Crypt::Mac::HMAC;
             $self->secure_set_add(
                 sub( $env, $metric, $string ) {
-                    my $obscure = hmac_b64u( $hash, $key, $string );
+                    my $obscure = Crypt::Mac::HMAC::hmac_b64u( $hash, $key, $string );
                     $self->set_add->( $env, $metric, $obscure );
                 }
             );

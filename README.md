@@ -48,23 +48,12 @@ to a statsd server.
 
 # RECENT CHANGES
 
-Changes for version v0.9.0 (2026-05-09)
+Changes for version v0.9.1 (2026-05-14)
 
-- Security
-    - The psgi.request.remote\_addr metric is no longer logged unless the secure\_set\_key is specified in the constructor. This is to avoid leaking personally identifiable information if the connection to the statsd client is not secure, CVE-2026-45179.
 - Enhancements
-    - Added psgix.monitor.statsd\_secure\_set\_add to the environment with a method for securely logging set data.
-- Documentation
-    - Added a SECURITY CONSIDERATIONS section.
-    - Updated copyright year.
-    - Updated author email due to issues with cpan.org email forwarding.
-    - Removed CONTRIBUTING.md due to re-evaluation about some AI-assisted issue reporting.
-    - Fixed spelling errors.
-- Tests
-    - Added author tests for POD spelling.
-- Toolchain
-    - Stopped signing distributions, since Module::Signature is deprecated.
-    - Added doap.xml to the distribution.
+    - Crypt::Mac::HMAC is only loaded if secure\_set\_key is specified.
+- Security
+    - The minimum version of Crypt::Mac::HMAC was bumped.
 
 See the `Changes` file for more details.
 
@@ -72,8 +61,9 @@ See the `Changes` file for more details.
 
 This module lists the following modules as runtime dependencies:
 
-- [Crypt::Mac::HMAC](https://metacpan.org/pod/Crypt%3A%3AMac%3A%3AHMAC) version 0.088 or later
+- [Crypt::Mac::HMAC](https://metacpan.org/pod/Crypt%3A%3AMac%3A%3AHMAC) version 0.089 or later
 - [List::Util](https://metacpan.org/pod/List%3A%3AUtil)
+- [Module::Load](https://metacpan.org/pod/Module%3A%3ALoad)
 - [Plack::Middleware](https://metacpan.org/pod/Plack%3A%3AMiddleware)
 - [Ref::Util](https://metacpan.org/pod/Ref%3A%3AUtil)
 - [Time::HiRes](https://metacpan.org/pod/Time%3A%3AHiRes)
