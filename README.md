@@ -48,7 +48,7 @@ to a statsd server.
 
 # RECENT CHANGES
 
-Changes for version v0.9.1 (2026-05-14)
+Changes for version v0.9.1 (2026-05-16)
 
 - Enhancements
     - Crypt::Mac::HMAC is only loaded if secure\_set\_key is specified. It is now recommended instead of required.xs
